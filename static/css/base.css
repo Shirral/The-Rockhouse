@@ -1,0 +1,31 @@
+body {
+    height: 100%;
+    margin: 0;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    text-align: center;
+}
+
+main {
+    background-color: green;
+}
+
+a {
+    color: inherit;
+}
+
+footer a:hover {
+    color: black;
+}
+
+/* from Bulma */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+} 
