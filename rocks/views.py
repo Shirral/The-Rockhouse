@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
 
-def index(request):
-    return render(request, 'rocks/index.html')
+def adoptions(request):
+    return render(request, 'rocks/index.html', {'active_page': 'adoptions'})
