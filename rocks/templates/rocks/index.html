@@ -9,66 +9,18 @@
         <div class="container">
             <hr>
             <div class="rock-grid row">
-                <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center my-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ MEDIA_URL }}placeholder.webp" class="card-img-top" alt="placeholder image">
-                        <div class="card-body">
-                        <h5 class="card-title">Rock Name</h5>
-                        <p class="card-text">Short description of the rock meant to draw the reader in...</p>
-                        <a href="#" class="text-muted">See more...</a>
+                {% for rock in rocks %}
+                    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center my-3">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ rock.image.url }}" class="card-img-top" alt="image of {{rock.name}}">
+                            <div class="card-body">
+                            <h5 class="card-title">{{rock.name}}</h5>
+                            <p class="card-text">{{rock.short_description}}</p>
+                            <a href="#" class="text-muted">See more...</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center my-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ MEDIA_URL }}placeholder.webp" class="card-img-top" alt="placeholder image">
-                        <div class="card-body">
-                        <h5 class="card-title">Rock Name</h5>
-                        <p class="card-text">Short description of the rock meant to draw the reader in...</p>
-                        <a href="#" class="text-muted">See more...</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center my-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ MEDIA_URL }}placeholder.webp" class="card-img-top" alt="placeholder image">
-                        <div class="card-body">
-                        <h5 class="card-title">Rock Name</h5>
-                        <p class="card-text">Short description of the rock meant to draw the reader in...</p>
-                        <a href="#" class="text-muted">See more...</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center my-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ MEDIA_URL }}placeholder.webp" class="card-img-top" alt="placeholder image">
-                        <div class="card-body">
-                        <h5 class="card-title">Rock Name</h5>
-                        <p class="card-text">Short description of the rock meant to draw the reader in...</p>
-                        <a href="#" class="text-muted">See more...</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center my-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ MEDIA_URL }}placeholder.webp" class="card-img-top" alt="placeholder image">
-                        <div class="card-body">
-                        <h5 class="card-title">Rock Name</h5>
-                        <p class="card-text">Short description of the rock meant to draw the reader in...</p>
-                        <a href="#" class="text-muted">See more...</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center my-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ MEDIA_URL }}placeholder.webp" class="card-img-top" alt="placeholder image">
-                        <div class="card-body">
-                        <h5 class="card-title">Rock Name</h5>
-                        <p class="card-text">Short description of the rock meant to draw the reader in...</p>
-                        <a href="#" class="text-muted">See more...</a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </main>
