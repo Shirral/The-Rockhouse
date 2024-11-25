@@ -9,7 +9,17 @@ def adoptions(request):
     context = {
         'active_page': 'adoptions',
         'rocks': rocks
-
     }
 
     return render(request, 'rocks/index.html', context)
+
+
+def rockprofile(request):
+
+    rocks = Rock.objects.all()
+
+    context = {
+        'rocks': rocks
+    }
+
+    return render(request, 'rocks/rockprofile.html', context)

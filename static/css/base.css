@@ -32,8 +32,16 @@ footer a:hover {
     padding: 10px;
 }
 
-.active {
+.title-section .active {
     text-decoration: underline;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+
+.dropdown-menu {
+    margin-top: 1em;
 }
 
 #logo {
