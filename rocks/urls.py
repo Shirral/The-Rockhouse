@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.adoptions, name='adoptions'),
-    path('rockprofile/', views.rockprofile, name='rockprofile'),
+    path('rockprofile/<int:rock_id>', views.rockprofile, name='rockprofile'),
 ]

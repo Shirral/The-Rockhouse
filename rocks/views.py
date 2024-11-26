@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Rock
 
 
@@ -14,12 +14,12 @@ def adoptions(request):
     return render(request, 'rocks/index.html', context)
 
 
-def rockprofile(request):
+def rockprofile(request, rock_id):
 
-    rocks = Rock.objects.all()
+    rock = get_object_or_404(Rock, pk=rock_id)
 
     context = {
-        'rocks': rocks
+        'rock': rock
     }
 
     return render(request, 'rocks/rockprofile.html', context)
