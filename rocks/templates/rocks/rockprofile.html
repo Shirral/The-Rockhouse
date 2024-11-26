@@ -3,3 +3,37 @@
 {% block header %}
     {% include 'includes/nav-secondary.html' %}
 {% endblock %}
+
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="rock-preview-info mt-5">
+                <div class="row">
+                    <div class="col-12 col-md-6 justify-content-center">
+                        <img src="{{ MEDIA_URL }}placeholder.webp" class="img-fluid custom-rounded p-4" alt="placeholder image">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="p-4">
+                            <h1>Rock Name</h1>
+                            <p>Material: </p>
+                            <p>Texture: </p>
+                            <p>Presonality: </p>
+                            <p>Available for adoption: </p>
+                            <p>Adoption cost: </p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p class="p-4">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet tempora recusandae non doloremque excepturi eum magnam reiciendis voluptatum. Aspernatur, debitis. Deleniti doloremque ut quibusdam culpa eveniet molestiae in numquam cumque?
+                    </p>
+                </div>
+            </div>
+            <div class="mt-5 text-center">
+                <p><strong>[Rock Name] is available for adoption!</strong></p>
+                <a class="btn btn-dark mb-5">ADOPT NOW</a><br>
+                <a class="text-muted small" href="{% url 'adoptions' %}">< Back to all available rocks</a>
+            </div>
+        </div>
+    </main>
+{% endblock %}
