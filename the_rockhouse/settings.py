@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
     # custom apps
     'rocks',
+    'adoptions',
 ]
 
 SITE_ID = 1

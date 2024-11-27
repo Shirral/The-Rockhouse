@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block header %}
+    {% include 'includes/nav-secondary.html' %}
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="mt-5">
+                <div class="row">
+                    <div class="col-12 col-md-5 justify-content-center">
+                        <img src="{{ rock.image.url }}" class="img-fluid custom-rounded p-4" alt="placeholder image">
+                    </div>
+                    <div class="col-12 col-md-7">
+                        <div class="p-4">
+                            <h1 class="mb-4">{{rock.name}}</h1>
+                            <p>Adopt {{rock.name}} today to help us care for our rocks!</p>
+                            <p>Adopting {{rock.name}} will help us provide it and its rock friends
+                            with the optimal conditions every rock needs to thrive. Support
+                            the Rockhouse's mission to show every rock the love and attention
+                            it deserves!</p>
+                            <p>Once the adoption is finalised, you will become {{rock.name}}'s proud
+                                owner. You will gain access to the customisation tool where you can
+                                accessorise {{rock.name}} as you see fit and share its profile
+                                with the world!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="mt-5 text-right">
+                <p><strong>{{rock.name}}'s adoption cost: £{{rock.price}}</strong></p>
+                <a class="btn btn-dark mb-5">PROCEED</a><br>
+                <a class="text-muted small" href="{% url 'rockprofile' rock.id %}">< Back to {{rock.name}}'s page</a>
+            </div>
+        </div>
+    </main>
+{% endblock %}
