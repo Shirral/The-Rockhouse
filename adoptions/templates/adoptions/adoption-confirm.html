@@ -32,7 +32,7 @@
             </div>
             <div class="mt-5 text-right">
                 <p><strong>{{rock.name}}'s adoption cost: £{{rock.price}}</strong></p>
-                <a class="btn btn-dark mb-5">PROCEED</a><br>
+                <a class="btn btn-dark mb-5" href="{% url 'adoption_form' rock.id %}">PROCEED</a><br>
                 <a class="text-muted small" href="{% url 'rockprofile' rock.id %}">< Back to {{rock.name}}'s page</a>
             </div>
         </div>

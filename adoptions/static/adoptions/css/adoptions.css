@@ -1,0 +1,41 @@
+/* modified from the Boutique-Ado tutorial project by Code Institute,
+which used the code from Stripe's documentation */
+
+.StripeElement,
+.stripe-style-input {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 0.2em 1em;
+  border: 1px solid transparent;
+  border-radius: 0px;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.StripeElement--focus,
+.stripe-style-input:focus,
+.stripe-style-input:active {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+.stripe-style-input::placeholder {
+    color: #aab7c4;
+}
+
+.stripe-style-input,
+#card-element {
+    color: #4e5661;
+    border: 1px solid #4e5661;
+    border-radius: 10px;
+}
+
+#card-element {
+    padding: 10px 1em;
+}

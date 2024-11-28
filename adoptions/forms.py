@@ -17,9 +17,9 @@ class AdoptionForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
         placeholders = {
-            'full_name': 'Full Name',
-            'address1': 'Street Address',
-            'address2': 'Street Address Line 2',
+            'full_name': 'Full name',
+            'address1': 'Street address',
+            'address2': 'Street address line 2',
             'postcode': 'Postcode / ZIP code',
             'town': 'City',
             'country': 'Country',
