@@ -23,19 +23,18 @@
                 <hr>
             </div>
             <div class="mt-5">
-                <form action="{% url 'checkout' %}" method="POST" id="adoption-form">
+                <form action="{% url 'adoption_form' rock.id %}" method="POST" id="adoption-form">
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <h5 class="mb-4">Billing information</h5>
                             <fieldset class="rounded px-3 mb-5">
-                                {{order_form.full_name | as_crispy_field}}
-                                {{order_form.email | as_crispy_field}}
-                                {{order_form.address1 | as_crispy_field}}
-                                {{order_form.address2 | as_crispy_field}}
-                                {{order_form.town | as_crispy_field}}
-                                {{order_form.postcode | as_crispy_field}}
-                                {{order_form.country | as_crispy_field}}
+                                {{adoption_form.full_name | as_crispy_field}}
+                                {{adoption_form.address1 | as_crispy_field}}
+                                {{adoption_form.address2 | as_crispy_field}}
+                                {{adoption_form.town | as_crispy_field}}
+                                {{adoption_form.postcode | as_crispy_field}}
+                                {{adoption_form.country | as_crispy_field}}
                             </fieldset>
                         </div>
                         <div class="col-12 col-md-6">
