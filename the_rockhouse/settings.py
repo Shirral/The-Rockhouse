@@ -52,6 +52,9 @@ INSTALLED_APPS = [
     # custom apps
     'rocks',
     'adoptions',
+
+    # others
+    'crispy_forms',
 ]
 
 SITE_ID = 1

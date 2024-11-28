@@ -8,7 +8,6 @@ for directory in template_dirs:
     print(directory)
 
 
-
 def adoption_confirm(request, rock_id):
 
     rock = get_object_or_404(Rock, pk=rock_id)
@@ -20,5 +19,12 @@ def adoption_confirm(request, rock_id):
     return render(request, 'adoptions/adoption-confirm.html', context)
 
 
+def adoption_form(request, rock_id):
 
+    rock = get_object_or_404(Rock, pk=rock_id)
 
+    context = {
+        'rock': rock
+    }
+
+    return render(request, 'adoptions/adoption-form.html', context)
