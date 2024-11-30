@@ -56,3 +56,8 @@ footer a:hover {
 .custom-rounded {
     border-radius: 40px;
 }
+
+.message-container {
+    max-width: 70%;
+    margin: 0 auto 2em;
+}
