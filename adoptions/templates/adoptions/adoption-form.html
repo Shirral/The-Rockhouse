@@ -45,10 +45,12 @@
                         <div class="col-12 col-md-6">
                             <h5 class="mb-4">Card details</h5>
                             <fieldset class="px-3 mb-5">
-                                <!-- A Stripe card element will go here -->
+                                {% comment %} A Stripe card element will go here {% endcomment %}
                                 <div class="mb-3" id="card-element"></div>
-                                <!-- Used to display form errors -->
+                                {% comment %} Used to display form errors {% endcomment %}
                                 <div class="text-danger" id="card-errors" role="alert"></div>
+                                {% comment %} Hidden input to pass payment intent id to the POST method part of the view {% endcomment %}
+                                <input type="hidden" id="payment_intent_id" name="payment_intent_id" value="">
                             </fieldset>
                             <div class="text-center">
                                 <input type="submit" class="btn btn-dark mb-3" value="COMPLETE ADOPTION"><br>

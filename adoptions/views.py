@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.models import User
 from rocks.models import Rock
 from .models import RockAdoption
@@ -44,13 +45,31 @@ def adoption_form(request, rock_id):
             adoption.user = request.user
             adoption.cost = cost
             adoption.is_paid = False  # updated later with webhook?
-            adoption.stripe_id = ""  # updated later with webhook?
-            # adoption.adoption_number = uuid.uuid4().hex.upper()  # id
             adoption.adoption_number = adoption._generate_adoption_number()
+
+            # get stripe id from the PI - change later to get it from webhook
+            # if time!
+            payment_intent_id = request.POST.get('payment_intent_id')
+            adoption.stripe_id = payment_intent_id
+
+            # get payment confirmation from the PI - change later to get it
+            # from webhook if time! - from
+            # https://docs.stripe.com/api/payment_intents/retrieve ,
+            # error handling:
+            # https://docs.stripe.com/error-handling?lang=python&locale=en-GB#catch-exceptions
+            stripe.api_key = stripe_secret_key
+            try:
+                intent = stripe.PaymentIntent.retrieve(payment_intent_id)
+                if intent.status == 'succeeded':
+                    adoption.is_paid = True
+                else:
+                    adoption.is_paid = False
+            except stripe.error.StripeError as e:
+                messages.error(request, "Something went wrong. Please try again!")
 
             adoption.save()
 
-        return redirect(reverse('adoption-success', args=[adoption.id]))
+        return redirect(reverse('adoption_success', args=[adoption.id]))
 
     else:
         stripe_cost = round(cost * 100)
@@ -65,7 +84,8 @@ def adoption_form(request, rock_id):
             'rock': rock,
             'adoption_form': adoption_form,
             'stripe_public_key': stripe_public_key,
-            'client_secret': intent.client_secret
+            'client_secret': intent.client_secret,
+            'payment_intent_id': intent.id
         }
 
         return render(request, 'adoptions/adoption-form.html', context)
