@@ -33,11 +33,13 @@
                     </p>
                 </div>
             </div>
-            <div class="mt-5 text-center">
-                <p><strong>{{rock.name}} is available for adoption!</strong></p>
-                <a href="{% url 'adoption_confirm' rock.id %}" class="btn btn-dark mb-5">ADOPT NOW</a><br>
-                <a class="text-muted small" href="{% url 'adoptions' %}">< Back to all available rocks</a>
-            </div>
+            {% if rock.is_owned == False %}
+                <div class="mt-5 text-center">
+                    <p><strong>{{rock.name}} is available for adoption!</strong></p>
+                    <a href="{% url 'adoption_confirm' rock.id %}" class="btn btn-dark mb-5">ADOPT NOW</a><br>
+                    <a class="text-muted small" href="{% url 'adoptions' %}">< Back to all available rocks</a>
+                </div>
+            {% endif %}
         </div>
     </main>
 {% endblock %}

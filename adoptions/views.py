@@ -13,6 +13,10 @@ def adoption_confirm(request, rock_id):
 
     rock = get_object_or_404(Rock, pk=rock_id)
 
+    if rock.is_owned is True:
+        messages.info(request, "The rock you are trying to adopt already has an owner. Please choose a different rock!")
+        return redirect(reverse('adoptions'))
+
     context = {
         'rock': rock
     }
@@ -26,6 +30,10 @@ def adoption_form(request, rock_id):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     rock = get_object_or_404(Rock, pk=rock_id)
     cost = rock.price
+
+    if rock.is_owned is True:
+        messages.info(request, "The rock you are trying to adopt already has an owner. Please choose a different rock!")
+        return redirect(reverse('adoptions'))
 
     if request.method == 'POST':
         form_data = {
@@ -68,6 +76,10 @@ def adoption_form(request, rock_id):
                 messages.error(request, "Something went wrong. Please try again!")
 
             adoption.save()
+
+            rock.is_owned = True
+            rock.owner = request.user
+            rock.save()
 
         return redirect(reverse('adoption_success', args=[adoption.adoption_number]))
 
