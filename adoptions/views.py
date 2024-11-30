@@ -69,7 +69,7 @@ def adoption_form(request, rock_id):
 
             adoption.save()
 
-        return redirect(reverse('adoption_success', args=[adoption.id]))
+        return redirect(reverse('adoption_success', args=[adoption.adoption_number]))
 
     else:
         stripe_cost = round(cost * 100)
@@ -89,3 +89,16 @@ def adoption_form(request, rock_id):
         }
 
         return render(request, 'adoptions/adoption-form.html', context)
+
+
+def adoption_success(request, adoption_number):
+    adoption = get_object_or_404(RockAdoption, adoption_number=adoption_number)
+
+    messages.success(request, f'{adoption.rock} was successfully adopted!')
+
+    template = 'adoptions/adoption-success.html'
+    context = {
+        'adoption': adoption
+    }
+
+    return render(request, template, context)
