@@ -72,8 +72,8 @@ def adoption_form(request, rock_id):
                     adoption.is_paid = True
                 else:
                     adoption.is_paid = False
-            except stripe.error.StripeError as e:
-                messages.error(request, "Something went wrong. Please try again!")
+            except stripe.error.StripeError:
+                messages.error(request, "Something went wrong with processing your payment. Please try again!")
 
             adoption.save()
 
