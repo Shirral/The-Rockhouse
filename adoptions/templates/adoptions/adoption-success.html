@@ -27,7 +27,10 @@
                     </div>
                 </div>
                 <hr>
-                <div class="mt-5 text-right">
+                <div class="mt-5 text-right d-none d-md-block">
+                    <a class="text-muted small" href="{% url 'rockprofile' adoption.rock.id %}">< Back to {{adoption.rock.name}}'s page</a>
+                </div>
+                <div class="mt-5 text-center d-block d-md-none">
                     <a class="text-muted small" href="{% url 'rockprofile' adoption.rock.id %}">< Back to {{adoption.rock.name}}'s page</a>
                 </div>
             </div>
