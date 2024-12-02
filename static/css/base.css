@@ -61,6 +61,14 @@ footer a:hover {
     border-radius: 40px;
 }
 
+.custom-checkbox {
+    height: 0.9em;
+    width: 0.9em;
+    margin-left: 5px;
+    vertical-align: middle;
+    margin-bottom: 0.1em;
+}
+
 .message-container {
     max-width: 70%;
     margin: 0 auto 2em;

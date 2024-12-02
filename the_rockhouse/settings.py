@@ -72,6 +72,7 @@ LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_FORMS = {
     'signup': 'userprofile.forms.CustomSignupForm',
+    'login': 'userprofile.forms.CustomLoginForm',
 }
 
 
