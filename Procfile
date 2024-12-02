@@ -1,1 +1,1 @@
-web: gunicorn the-rockhouse.wsgi:application
+web: gunicorn the_rockhouse.wsgi:application
