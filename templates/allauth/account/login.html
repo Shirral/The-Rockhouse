@@ -18,21 +18,34 @@
 <div class="container mt-5 p-5 rock-preview-info text-center">
   <h1>{% trans "Log In" %}</h1>
 
-  <p class="mb-5">{% blocktrans %}No account? <strong><a href="{{ login_url }}">Register  here</a></strong> first!{% endblocktrans %}</p>
+  <p class="mb-5">{% blocktrans %}No account? <strong><a href="{{ signup_url }}">Register  here</a></strong> first!{% endblocktrans %}</p>
 
   <form class="login" id="login_form" method="post" action="{% url 'account_login' %}">
     {% csrf_token %}
     <div>
-      <div class="form-group">
-        {% comment %} <strong>{{ form.username.label_tag }}</strong><br> {% endcomment %}
-        {{ form.login }}
-        {{ form.login.errors }}
+      <div class="d-block d-lg-none">
+        <div class="form-group">
+          {% comment %} <strong>{{ form.username.label_tag }}</strong><br> {% endcomment %}
+          {{ form.login }}
+          {{ form.login.errors }}
+        </div>
+        <div class="form-group">
+          {% comment %} <strong>{{ form.email.label_tag }}</strong><br> {% endcomment %}
+          {{ form.password }}
+          {{ form.password.errors }}
+        </div>
       </div>
-      <div class="form-group">
-        <div class="mt-4"></div>
-        {% comment %} <strong>{{ form.email.label_tag }}</strong><br> {% endcomment %}
-        {{ form.password }}
-        {{ form.password.errors }}
+      <div class="row d-none d-lg-flex" id="login-lg-screens">
+        <div class="form-group col-6">
+          {% comment %} <strong>{{ form.username.label_tag }}</strong><br> {% endcomment %}
+          {{ form.login }}
+          {{ form.login.errors }}
+        </div>
+        <div class="form-group col-6">
+          {% comment %} <strong>{{ form.email.label_tag }}</strong><br> {% endcomment %}
+          {{ form.password }}
+          {{ form.password.errors }}
+        </div>
       </div>
       <div class="form-group" id="remember-label">
         {{ form.remember.label_tag }}

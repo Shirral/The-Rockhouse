@@ -74,6 +74,11 @@ footer a:hover {
     margin: 0 auto 2em;
 }
 
+#login-lg-screens .col-6 {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
 /* ---------------- */
 
 @media (min-width: 992px) and (max-width: 1199px) {
