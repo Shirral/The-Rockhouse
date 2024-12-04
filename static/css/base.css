@@ -19,7 +19,8 @@ a {
     color: inherit;
 }
 
-p a:hover {
+p a:hover,
+h5 a:hover {
     color: #212529;
 }
 
