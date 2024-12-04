@@ -32,7 +32,7 @@ DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = [
     'the-rockhouse-781674c0484c.herokuapp.com',
-    'localhost'
+    '127.0.0.1'
 ]
 
 
