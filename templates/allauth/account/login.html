@@ -18,7 +18,13 @@
 <div class="container mt-5 p-5 rock-preview-info text-center">
   <h1>{% trans "Log In" %}</h1>
 
-  <p class="mb-5">{% blocktrans %}No account? <strong><a href="{{ signup_url }}">Register  here</a></strong> first!{% endblocktrans %}</p>
+  <p class="mb-5">{% blocktrans %}No account? <strong><a href="{{ signup_url }}">Register here</a></strong> first!{% endblocktrans %}</p>
+
+  {% if form.non_field_errors %}
+    <div class="text-danger text-center mb-5">
+      {{ form.non_field_errors }}
+    </div>
+  {% endif %}
 
   <form class="login d-block d-lg-none" id="login_form" method="post" action="{% url 'account_login' %}">
     {% csrf_token %}
