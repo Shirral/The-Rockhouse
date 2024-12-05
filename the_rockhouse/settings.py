@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'rocks',
     'adoptions',
     'userprofile',
+    'customisation',
 
     # others
     'crispy_forms',
