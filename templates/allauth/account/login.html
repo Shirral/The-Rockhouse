@@ -41,8 +41,9 @@
       <a class="button secondaryAction text-muted small" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
     </div>
   </form>
-  <form class="login d-none d-lg-flex" id="login_form" method="post" action="{% url 'account_login' %}">
-    <div>
+  <form class="login d-none d-lg-block" id="login_form" method="post" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    <div class="row" id="login-lg-screens">
         <div class="form-group col-6">
           {{ form.login }}
           {{ form.login.errors }}
@@ -52,7 +53,7 @@
           {{ form.password.errors }}
         </div>
     </div>
-    <div class="form-group" id="remember-label">
+    <div class="form-group mt-2" id="remember-label">
       {{ form.remember.label_tag }}
       {{ form.remember }}
     </div>
