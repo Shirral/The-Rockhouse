@@ -7,17 +7,20 @@
 {% block content %}
 <div class="container">
     <h1 class="mt-5">{{user.username}}</h1>
+    <p class="text-muted">Joined on {{user.date_joined}}</p>
     <p>Adopted rocks: {{rock_number}}</p>
     <hr>
+    <h5 class="mt-5 mb-4 pb-2 text-center">{{user.username}}'s rocks</h5>
     <div class="rock-grid row">
-        {% for rock in rocks %}
+        {% for rock in rock_adoption %}
             <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center my-3">
                 <div class="card" style="width: 18rem;">
-                    <a href="{% url 'rockprofile' rock.id %}"><img src="{{ rock.image.url }}" class="card-img-top" alt="image of {{rock.name}}"></a>
+                    <a href="{% url 'rockprofile' rock.rock.id %}"><img src="{{ rock.rock.image.url }}" class="card-img-top" alt="image of {{rock.rock.name}}"></a>
                     <div class="card-body">
-                    <h5 class="card-title">{{rock.name}}</h5>
-                    <p class="card-text">{{rock.short_description}}</p>
-                    <a href="{% url 'rockprofile' rock.id %}" class="text-muted">See more...</a>
+                    <h5 class="card-title">{{rock.rock.name}}</h5>
+                    <p class="card-text text-muted small">Adopted on {{rock.date}}</p>
+                    <p class="card-text">{{rock.rock.short_description}}</p>
+                    <a href="{% url 'rockprofile' rock.rock.id %}" class="text-muted">See more...</a>
                     </div>
                 </div>
             </div>
