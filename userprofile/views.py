@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from rocks.models import Rock
 from adoptions.models import RockAdoption
 from django.contrib.auth.models import User
@@ -18,3 +18,10 @@ def profile(request, username):
     }
 
     return render(request, 'userprofile/profile.html', context)
+
+
+def myprofile(request):
+
+    username = request.user.username
+
+    return redirect(reverse(profile, args=[username]))
