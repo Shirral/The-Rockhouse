@@ -21,7 +21,7 @@
                                 <p><strong>Available for adoption:</strong> <strong>YES!</strong></p>
                                 <p><strong>Adoption cost:</strong> £{{rock.price}}</p>        
                             {% else %}
-                                <p><strong>Owned by:</strong> {{rock.owner}}</p>
+                                <p><strong>Owned by:</strong> <a href="{% url 'profile' rock.owner %}">{{rock.owner}}</a></p>
                             {% endif %}
                         </div>
                     </div>
