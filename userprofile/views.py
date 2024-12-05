@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 def profile(request, username):
 
-    user = get_object_or_404(User, username=username)
+    user = get_object_or_404(User, username__iexact=username)
     user_id = user.id
     rocks = Rock.objects.filter(owner=user_id)
     rock_number = len(rocks)
