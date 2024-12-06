@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'customisation/css/customisation.css' %}">
+{% endblock %}
+
+{% block header %}
+    {% include 'includes/nav-secondary.html' %}
+{% endblock %}
+
+{% block content %}
+        <div class="container text-center">
+            <h1 class="my-5">Customise {{rock.name}}</h1>
+            <div class="row">
+                <div class="col-10 offset-1 col-md-6 offset-md-3">
+                    {% comment %} <p class="small text-muted"><a href="#">[Change {{rock.name}}'s name?]</a></p> {% endcomment %}
+                    <img src="{{ rock.image.url }}" class="img-fluid custom-rounded"  alt="image of {{rock.name}}">
+                </div>
+            </div>
+            <div>
+                <p class="p-4">
+                    {{rock.description}}
+                </p>
+            </div>
+        </div>
+{% endblock %}

@@ -9,4 +9,5 @@ urlpatterns = [
     path('', include('rocks.urls')),
     path('adoptions/', include('adoptions.urls')),
     path('profile/', include('userprofile.urls')),
+    path('customisation/', include('customisation.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
