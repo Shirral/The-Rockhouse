@@ -30,11 +30,12 @@
                         </h2>
                       </div>
                   
-                      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body d-flex row">
                             {% for accessory in accessories %}
                             <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
                                 <div style="width: 10rem;">
+                                    <input type="checkbox" name="accessory_{{accessory.id}}" id="accessory_{{accessory.id}}">
                                     <img src="{{ accessory.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{accessory.name}}">
                                 </div>
                             </div>
@@ -52,15 +53,22 @@
                         </h2>
                       </div>
 
-                      <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body d-flex row">
                             {% for frame in frames %}
                             <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
                                 <div style="width: 10rem;">
+                                    <input type="radio" name="frame_{{frame.id}}" id="frame_{{frame.id}}">
                                     <img src="{{ frame.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{frame.name}}">
                                 </div>
                             </div>
                             {% endfor %}
+                            <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
+                                <div style="width: 10rem;">
+                                    <input type="radio" name="frame_none" id="frame_none">
+                                    <img src="{{ MEDIA_URL }}no_image.png" class="img-fluid accesory-checkbox custom-rounded"  alt="remove frame">
+                                </div>
+                            </div>
                         </div>
                       </div>
                     </div>  
@@ -72,11 +80,6 @@
 {% endblock %}
 
 {% block postloadjs %}
-<script>
-    var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
-    var collapseList = collapseElementList.map(function (collapseEl) {
-        return new bootstrap.Collapse(collapseEl)
-})
-</script>
+
 
 {% endblock %}
