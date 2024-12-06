@@ -1,3 +1,5 @@
-#customisation-image {
-    max-width: 50%;
+#customisation-image .col-md-6,
+#customisation-image .col-10 {
+    padding-right: 0;
+    padding-left: 0;
 }

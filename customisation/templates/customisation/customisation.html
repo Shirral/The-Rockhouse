@@ -12,16 +12,127 @@
 {% block content %}
         <div class="container text-center">
             <h1 class="my-5">Customise {{rock.name}}</h1>
-            <div class="row">
-                <div class="col-10 offset-1 col-md-6 offset-md-3">
+            <div class="row" id="customisation-image">
+                <div class="col-10 offset-1 col-md-6 offset-md-3 mb-5 rock-preview-info">
                     {% comment %} <p class="small text-muted"><a href="#">[Change {{rock.name}}'s name?]</a></p> {% endcomment %}
-                    <img src="{{ rock.image.url }}" class="img-fluid custom-rounded"  alt="image of {{rock.name}}">
+                    <img src="{{ rock.image.url }}" class="img-fluid custom-rounded p-4"  alt="image of {{rock.name}}">
                 </div>
             </div>
-            <div>
-                <p class="p-4">
-                    {{rock.description}}
-                </p>
+
+            <div class="rock-grid row">
+                <div class="accordion w-100" id="accordionExample">
+                    <div class="card">
+                      <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Accesories
+                          </button>
+                        </h2>
+                      </div>
+                  
+                      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body d-flex row">
+                            <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
+                                <div style="width: 10rem;">
+                                    <img src="{{ rock.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{rock.name}}">
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
+                                <div style="width: 10rem;">
+                                    <img src="{{ rock.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{rock.name}}">
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
+                                <div style="width: 10rem;">
+                                    <img src="{{ rock.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{rock.name}}">
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
+                                <div style="width: 10rem;">
+                                    <img src="{{ rock.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{rock.name}}">
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
+                                <div style="width: 10rem;">
+                                    <img src="{{ rock.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{rock.name}}">
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
+                                <div style="width: 10rem;">
+                                    <img src="{{ rock.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{rock.name}}">
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
+                                <div style="width: 10rem;">
+                                    <img src="{{ rock.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{rock.name}}">
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
+                                <div style="width: 10rem;">
+                                    <img src="{{ rock.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{rock.name}}">
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
+                                <div style="width: 10rem;">
+                                    <img src="{{ rock.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{rock.name}}">
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
+                                <div style="width: 10rem;">
+                                    <img src="{{ rock.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{rock.name}}">
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
+                                <div style="width: 10rem;">
+                                    <img src="{{ rock.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{rock.name}}">
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
+                                <div style="width: 10rem;">
+                                    <img src="{{ rock.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{rock.name}}">
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card">
+                      <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Frames
+                          </button>
+                        </h2>
+                      </div>
+
+                      <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body d-flex row">
+                            <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
+                                <div style="width: 10rem;">
+                                    <img src="{{ rock.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{rock.name}}">
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
+                                <div style="width: 10rem;">
+                                    <img src="{{ rock.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{rock.name}}">
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>  
+                </div>
             </div>
+            <p class="text-muted small mt-5">Can't find what you're looking for?<br>
+            <strong><a href="#">Request a custom accessory!</a></strong></p>
         </div>
+{% endblock %}
+
+{% block postloadjs %}
+<script>
+    var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
+    var collapseList = collapseElementList.map(function (collapseEl) {
+        return new bootstrap.Collapse(collapseEl)
+})
+</script>
+
 {% endblock %}
