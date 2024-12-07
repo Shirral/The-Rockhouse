@@ -13,9 +13,10 @@
         <div class="container text-center">
             <h1 class="my-5">Customise {{rock.name}}</h1>
             <div class="row" id="customisation-image">
-                <div class="col-10 offset-1 col-md-6 offset-md-3 mb-5 rock-preview-info">
+                <div class="col-10 offset-1 col-md-6 offset-md-3 mb-5 rock-preview-info" id="customisation-image-inner-div">
                     {% comment %} <p class="small text-muted"><a href="#">[Change {{rock.name}}'s name?]</a></p> {% endcomment %}
-                    <img src="{{ rock.image.url }}" class="img-fluid custom-rounded p-4"  alt="image of {{rock.name}}">
+                    <img src="{{ rock.image.url }}" class="rock-img img-fluid custom-rounded p-4"  alt="image of {{rock.name}}">
+                    <div id="accessories-layer"></div>
                 </div>
             </div>
 
@@ -31,11 +32,11 @@
                       </div>
                   
                       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                        <div class="card-body d-flex row">
+                        <div class="card-body d-flex row" id="accessory-options">
                             {% for accessory in accessories %}
                             <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
                                 <div style="width: 10rem;">
-                                    <input type="checkbox" name="accessory_{{accessory.id}}" id="accessory_{{accessory.id}}">
+                                    <input type="checkbox" name="accessory_{{accessory.id}}" id="accessory_{{accessory.id}}" value="{{accessory.id}}" class="accessory-option">
                                     <img src="{{ accessory.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{accessory.name}}">
                                 </div>
                             </div>
@@ -54,11 +55,11 @@
                       </div>
 
                       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                        <div class="card-body d-flex row">
+                        <div class="card-body d-flex row" id="frame-options">
                             {% for frame in frames %}
                             <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
                                 <div style="width: 10rem;">
-                                    <input type="radio" name="frame_{{frame.id}}" id="frame_{{frame.id}}">
+                                    <input type="radio" name="frame_{{frame.id}}" id="frame_{{frame.id}}" value="{{frame.id}}" class="frame-option">
                                     <img src="{{ frame.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{frame.name}}">
                                 </div>
                             </div>
@@ -80,6 +81,5 @@
 {% endblock %}
 
 {% block postloadjs %}
-
-
+    <script src="{% static 'customisation/js/customisation.js' %}"></script>
 {% endblock %}
