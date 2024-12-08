@@ -36,7 +36,7 @@
                             {% for accessory in accessories %}
                             <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
                                 <div style="width: 10rem;">
-                                    <input type="checkbox" name="accessory_{{accessory.id}}" id="accessory_{{accessory.id}}" value="{{accessory.id}}" class="accessory-option">
+                                    <input type="checkbox" name="accessory_{{accessory.id}}" id="accessory_{{accessory.id}}" value="accessory_{{accessory.id}}" class="accessory-option">
                                     <img src="{{ accessory.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{accessory.name}}">
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                             {% for frame in frames %}
                             <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
                                 <div style="width: 10rem;">
-                                    <input type="radio" name="frame_{{frame.id}}" id="frame_{{frame.id}}" value="{{frame.id}}" class="frame-option">
+                                    <input type="radio" name="frame_{{frame.id}}" id="frame_{{frame.id}}" value="accessory_{{frame.id}}" class="frame-option">
                                     <img src="{{ frame.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{frame.name}}">
                                 </div>
                             </div>
