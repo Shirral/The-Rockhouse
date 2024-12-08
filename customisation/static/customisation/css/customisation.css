@@ -20,16 +20,25 @@
     left: 0;
 }
 
-#accessories-layer {
+#accessories-layer,
+#frames-layer {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+#accessories-layer {
     z-index: 2;
 }
 
-#accessories-layer img {
+#frames-layer {
+    z-index: 3;
+}
+
+#accessories-layer img,
+#frames-layer img {
     width: 100%;
     height: auto;
     position: absolute;
