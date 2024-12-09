@@ -17,11 +17,10 @@
 
 #accessories-layer img,
 #frames-layer img {
-    width: 93%;
+    width: 87%;
     height: auto;
     position: absolute;
-    top: 3.75%;
-    left: 3.5%;
-    border: none;
+    top: 4%;
+    left: 6%;
     border-radius: 20px;
 }
