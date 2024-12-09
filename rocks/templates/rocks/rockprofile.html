@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'rocks/css/rocks.css' %}">
+{% endblock %}
 
 {% block header %}
     {% include 'includes/nav-secondary.html' %}
@@ -10,6 +15,22 @@
                 <div class="row">
                     <div class="col-12 col-md-6 justify-content-center">
                         <img src="{{ rock.image.url }}" class="img-fluid custom-rounded p-4" alt="image of {{rock.name}}">
+                        <div id="accessories-layer">
+                            {% for accessory in accessories %}
+                              {% if accessory.id in selected_accessories %}
+                                    <img src="{{ accessory.image.url }}" class="img-fluid"  alt="image of {{accessory.name}}">
+                              {% endif %}
+                            {% endfor %}
+                          </div>
+                          <div id="frames-layer">
+                            {% if selected_frame != 'None' %}
+                              {% for frame in frames %}
+                                {% if frame.id == selected_frame %}
+                                  <img src="{{ frame.image.url }}" class="img-fluid" alt="image of {{frame.name}}">
+                                {% endif %}
+                              {% endfor %}
+                            {% endif %}
+                          </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="p-4">

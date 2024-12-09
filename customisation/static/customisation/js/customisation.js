@@ -10,11 +10,12 @@ $("#accessory-options").on("change", ".accessory-option", function () {
     if (this.checked) {
         accessoryImage.css({
             position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
+            top: "3.75%",
+            left: "3.5%",
+            width: "93%",
             height: "auto",
             zIndex: 2,
+            borderRadius: "20px"
         });
 
         accessoryImage.appendTo("#accessories-layer");
@@ -38,11 +39,12 @@ $("#frame-options").on("change", ".frame-option", function () {
     let frameImage = $(this).next().clone().attr("data-frame-id", frameId) // clone image & add to accessory div & copy its id from value
     frameImage.css({
         position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
+        top: "3.75%",
+        left: "3.5%",
+        width: "93%",
         height: "auto",
         zIndex: 3,
+        borderRadius: "20px"
     });
     
     frameImage.appendTo("#frames-layer");

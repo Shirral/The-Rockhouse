@@ -19,7 +19,7 @@
                     <div id="accessories-layer">
                       {% for accessory in accessories %}
                         {% if accessory.id in selected_accessories %}
-                              <img src="{{ accessory.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{accessory.name}}" style="position: absolute; top: 0px; left: 0px; width: 100%; height: auto; z-index: 2;">
+                              <img src="{{ accessory.image.url }}" class="img-fluid"  alt="image of {{accessory.name}}" data-accessory-id="{{accessory.id}}">
                         {% endif %}
                       {% endfor %}
                     </div>
@@ -27,7 +27,7 @@
                       {% if selected_frame != 'None' %}
                         {% for frame in frames %}
                           {% if frame.id == selected_frame %}
-                            <img src="{{ frame.image.url }}" class="img-fluid accesory-checkbox custom-rounded" alt="image of {{frame.name}}" style="position: absolute; top: 0px; left: 0px; width: 100%; height: auto; z-index: 2;">
+                            <img src="{{ frame.image.url }}" class="img-fluid" alt="image of {{frame.name}}">
                           {% endif %}
                         {% endfor %}
                       {% endif %}
@@ -92,7 +92,7 @@
               <p class="text-muted small mt-5">Can't find what you're looking for?<br>
               <strong><a href="#">Request a custom accessory!</a></strong></p>
               <button class="mt-5 btn btn-dark">CANCEL</button>
-              <input class="mt-5 btn btn-dark" type="submit" value="SUBMIT">
+              <input class="mt-5 btn btn-dark" type="submit" value="SAVE CHANGES">
             </form>
         </div>
 {% endblock %}

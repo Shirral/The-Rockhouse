@@ -1,25 +1,3 @@
-#customisation-image .col-md-6,
-#customisation-image .col-10 {
-    padding-right: 0;
-    padding-left: 0;
-}
-
-.accesory-checkbox {
-    border: 1px solid black;
-}
-
-#customisation-image-inner-div {
-    position: relative;
-    width: auto;
-}
-
-.rock-img {
-    position: relative;
-    z-index: 1;
-    top: 0;
-    left: 0;
-}
-
 #accessories-layer,
 #frames-layer {
     position: absolute;
@@ -47,6 +25,3 @@
     border: none;
     border-radius: 20px;
 }
-
-
-
