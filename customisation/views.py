@@ -14,12 +14,15 @@ def customisation(request, rock_id):
         selected_accessories = request.POST.getlist('accessory')
         selected_frame = request.POST.get('frame')
 
-        print(selected_accessories)
-        print(selected_frame)
+        for x in range(len(selected_accessories)):
+            selected_accessories[x] = int(selected_accessories[x])
+
+        # print(selected_accessories)
+        # print(selected_frame)
 
         customisation_json = {
             'accessories': selected_accessories,
-            'frame': selected_frame if selected_frame != 'frame_none' else None,
+            'frame': int(selected_frame) if selected_frame != 'frame_none' else None,
         }
 
         rock.accessories = customisation_json
@@ -27,10 +30,21 @@ def customisation(request, rock_id):
 
         return redirect('customisation', rock_id=rock.id)
 
+    if rock.accessories != "":
+        selected_accessories = rock.accessories['accessories']
+        print(selected_accessories)
+        if rock.accessories['frame']:
+            selected_frame = int(rock.accessories['frame'])
+        else:
+            selected_frame = 'None'
+        print(selected_frame)
+
     context = {
         'rock': rock,
         'accessories': accessories,
-        'frames': frames
+        'frames': frames,
+        'selected_frame': selected_frame,
+        'selected_accessories': selected_accessories
     }
 
     return render(request, 'customisation/customisation.html', context)

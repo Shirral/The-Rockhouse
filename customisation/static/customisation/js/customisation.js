@@ -2,6 +2,55 @@ const accessoriesLayer = $("#accessories-layer");
 const accessories = $(".accessory-option");
 const frames = $(".frame-option");
 
+function loadAccessories(){
+
+    accessories.each(function () {
+        let accessoryId = $(this).val();
+    
+        let accessoryImage = $(this).next().clone().attr("data-accessory-id", accessoryId) // clone image & add to accessory div & copy its id from value
+
+        if (this.checked) {
+            accessoryImage.css({
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "auto",
+                zIndex: 2,
+            });
+
+            accessoryImage.appendTo("#accessories-layer");
+        };
+    });
+
+    frames.each(function (){
+        if (this.checked) {
+            let frameId = $(this).val();
+
+            if (frameId === "frame_none") {
+                $("#frames-layer").empty();
+                return;
+            }
+
+            let frameImage = $(this).next().clone().attr("data-frame-id", frameId);
+
+            frameImage.css({
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "auto",
+                zIndex: 3,
+            });
+
+            $("#frames-layer").empty().append(frameImage);
+        };
+    });
+    
+};
+
+$(document).ready(loadAccessories);
+
 $("#accessory-options").on("change", ".accessory-option", function () {
     let accessoryId = $(this).val();
     
