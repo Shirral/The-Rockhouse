@@ -16,8 +16,22 @@
                 <div class="col-10 offset-1 col-md-6 offset-md-3 mb-5 rock-preview-info" id="customisation-image-inner-div">
                     {% comment %} <p class="small text-muted"><a href="#">[Change {{rock.name}}'s name?]</a></p> {% endcomment %}
                     <img src="{{ rock.image.url }}" class="rock-img img-fluid custom-rounded p-4"  alt="image of {{rock.name}}">
-                    <div id="accessories-layer"></div>
-                    <div id="frames-layer"></div>
+                    <div id="accessories-layer">
+                      {% for accessory in accessories %}
+                        {% if accessory.id in selected_accessories %}
+                              <img src="{{ accessory.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{accessory.name}}" style="position: absolute; top: 0px; left: 0px; width: 100%; height: auto; z-index: 2;">
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                    <div id="frames-layer">
+                      {% if selected_frame != 'None' %}
+                        {% for frame in frames %}
+                          {% if frame.id == selected_frame %}
+                            <img src="{{ frame.image.url }}" class="img-fluid accesory-checkbox custom-rounded" alt="image of {{frame.name}}" style="position: absolute; top: 0px; left: 0px; width: 100%; height: auto; z-index: 2;">
+                          {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </div>
                 </div>
             </div>
             <form action="{% url 'customisation' rock.id %}" method="POST">
@@ -60,14 +74,14 @@
                                 <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
                                     <div style="width: 10rem;">
                                         <input type="radio" name="frame" id="frame_{{frame.id}}" value="{{frame.id}}" class="frame-option" {% if frame.id == selected_frame %}checked{% endif %}>
-                                        <img src="{{ frame.image.url }}" class="img-fluid accesory-checkbox custom-rounded"  alt="image of {{frame.name}}">
+                                        <img src="{{ frame.image.url }}" class="img-fluid"  alt="image of {{frame.name}}">
                                     </div>
                                 </div>
                                 {% endfor %}
                                 <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
                                     <div style="width: 10rem;">
                                         <input type="radio" name="frame" id="frame_none" value="frame_none" class="frame-option">
-                                        <img src="{{ MEDIA_URL }}no_image.png" class="img-fluid accesory-checkbox custom-rounded"  alt="remove frame">
+                                        <img src="{{ MEDIA_URL }}no_image.png" class="img-fluid"  alt="remove frame">
                                     </div>
                                 </div>
                             </div>
