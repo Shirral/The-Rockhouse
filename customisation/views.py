@@ -56,3 +56,8 @@ def customisation(request, rock_id):
     }
 
     return render(request, 'customisation/customisation.html', context)
+
+
+def accessory_request(request):
+
+    return render(request, 'customisation/accessory_request.html')

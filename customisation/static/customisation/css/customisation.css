@@ -52,7 +52,10 @@
 
 /* Text input styles - copied from adoptions.css and edited */
 
-textarea {
+textarea,
+.form-group input,
+.form-group select,
+input[type="file"]::file-selector-button {
     box-sizing: border-box;
     padding: 1em 1em;
     color: #4e5661;
@@ -65,12 +68,45 @@ textarea {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-textarea::placeholder {
+textarea::placeholder,
+.form-group input::placeholder,
+.form-group select::placeholder {
     color: #aab7c4;
 }
 
 textarea:focus,
-textarea:active {
+textarea:active,
+.form-group input:focus,
+.form-group select:focus,
+.form-group input:active,
+.form-group select:active {
   box-shadow: 0 1px 3px 0 #cfd7df;
 }
 
+.form-group input {
+    padding: 0.2em 1em;
+}
+
+.form-group select {
+    padding: 0.4em 1em;
+}
+
+input[type="file"]::file-selector-button {
+    margin-right: 1em;
+}
+
+input[type="file"]::file-selector-button:hover {
+    cursor: pointer;
+    background-color: #343a40;
+    color: white;
+}
+ 
+
+@media (max-width: 768px) {
+
+    .request-form-textarea,
+    .form-group {
+        width: 100% !important;
+    }
+
+}
