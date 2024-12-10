@@ -19,8 +19,8 @@
                     <div class="col-12 col-md-9">
                         <div class="p-4">
                             <h1 class="mb-4">Thank you!</h1>
-                            <p>Thank you for adopting {{adoption.rock.name}}! They're now officially yours. You will find {{adoption.rock.name}} in your <a  href=""><strong>profile</strong></a>.</p>
-                            <p>You can now accessorise {{adoption.rock.name}} as you see fit! Go to the <a href=""><strong>customisation tool</strong></a> to make your new rock fancy, or to add a personal note about it for all to see.</p>
+                            <p>Thank you for adopting {{adoption.rock.name}}! They're now officially yours. You will find {{adoption.rock.name}} in your <a href="{% url 'myprofile' %}"><strong>profile</strong></a>.</p>
+                            <p>You can now accessorise {{adoption.rock.name}} as you see fit! Go to the <a href="{% url 'customisation' adoption.rock.id %}"><strong>customisation tool</strong></a> to make your new rock fancy, or to add a personal note about it for all to see.</p>
                             <p>Have fun with {{adoption.rock.name}}!</p>
                         </div>
                     </div>
