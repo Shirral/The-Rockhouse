@@ -51,6 +51,10 @@
                     <p class="p-4">
                         {{rock.description}}
                     </p>
+                    {% if rock.user_notes %}
+                        <p class="mx-4 mb-2"><strong>{{rock.owner}}'s notes about {{rock.name}}:</strong></p>
+                        <p class="mx-4 mb-4 pb-3">"{{rock.user_notes}}"</p>
+                    {% endif %}
                 </div>
             </div>
             {% if rock.is_owned == False %}
