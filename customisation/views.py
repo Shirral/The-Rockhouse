@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib import messages
 from rocks.models import Rock
-from .models import Accessories
+from .models import Accessories, AccessoryRequest
 
 
 def customisation(request, rock_id):
@@ -15,7 +16,7 @@ def customisation(request, rock_id):
 
     if user != rock.owner:
         messages.warning(request, "Only the owner of this rock can customise it. If you are the owner of this rock, please log in using the account you used to adopt it!")
-        return redirect(reverse('adoptions'))
+        return redirect(reverse('account_login'))
 
     if request.method == "POST":
 
@@ -57,7 +58,29 @@ def customisation(request, rock_id):
 
     return render(request, 'customisation/customisation.html', context)
 
-
+@login_required
 def accessory_request(request):
+
+    if request.method == "POST":
+        user = request.user
+        accessory_name = request.POST.get('accessory_name')
+        accessory_colour = request.POST.get('accessory_colour')
+        accessory_type = request.POST.get('accessory_type')
+        accessory_description = request.POST.get('accessory_description')
+        accessory_example = request.FILES.get('accessory_example')
+
+        request_form_data = {
+            'name': accessory_name,
+            'colour': accessory_colour,
+            'type': accessory_type,
+            'description': accessory_description,
+            'image': accessory_example,
+            'user': user
+        }
+
+        AccessoryRequest.objects.create(**request_form_data)
+
+        messages.success(request, "Accessory request submitted. Thank you!")
+        return redirect(reverse('myprofile'))
 
     return render(request, 'customisation/accessory_request.html')
