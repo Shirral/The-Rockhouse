@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'userprofile/css/userprofile.css' %}">
+{% endblock %}
+
 {% block header %}
     {% include 'includes/nav-secondary.html' %}
 {% endblock %}
@@ -15,7 +21,27 @@
         {% for rock in rock_adoption %}
             <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center my-3">
                 <div class="card" style="width: 18rem;">
-                    <a href="{% url 'rockprofile' rock.rock.id %}"><img src="{{ rock.rock.image.url }}" class="card-img-top" alt="image of {{rock.rock.name}}"></a>
+                    <a href="{% url 'rockprofile' rock.rock.id %}">
+                        <div id="customisation-image-inner-div">
+                            <img src="{{ rock.rock.image.url }}" class="card-img-top" alt="image of {{rock.rock.name}}">
+                            <div id="accessories-layer">
+                                {% for accessory in accessories %}
+                                    {% if accessory.id in rock.rock.accessories.accessories %}
+                                        <img src="{{ accessory.image.url }}" class="img-fluid gallery-display"  alt="image of {{accessory.name}}" data-accessory-id="{{accessory.id}}">
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <div id="frames-layer">
+                                {% if rock.rock.accessories.frame != 'None' %}
+                                    {% for frame in frames %}
+                                        {% if frame.id == rock.rock.accessories.frame %}
+                                            <img src="{{ frame.image.url }}" class="img-fluid gallery-display" alt="image of {{frame.name}}">
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title">{{rock.rock.name}} {% if user.username == request.user.username %}<span class="small text-muted float-right"><a href="{% url 'customisation' rock.rock.id %}">[customise]</a></span>{% endif %}</h5>
                         <p class="card-text text-muted small">Adopted on {{rock.date}}</p>
