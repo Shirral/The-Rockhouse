@@ -1,3 +1,8 @@
+#customisation-image-inner-div {
+    position: relative;
+    width: auto;
+}
+
 #accessories-layer,
 #frames-layer {
     position: absolute;
@@ -23,4 +28,14 @@
     top: 4%;
     left: 6%;
     border-radius: 20px;
+}
+
+#accessories-layer img.gallery-display,
+#frames-layer img.gallery-display {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 5px;
 }
