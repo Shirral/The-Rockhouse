@@ -34,12 +34,15 @@ def customisation(request, rock_id):
 
         return redirect('customisation', rock_id=rock.id)
 
-    if rock.accessories != "":
+    if rock.accessories and rock.accessories != "None":
         selected_accessories = rock.accessories['accessories']
         if rock.accessories['frame']:
             selected_frame = int(rock.accessories['frame'])
         else:
             selected_frame = 'None'
+    else:
+        selected_accessories = []
+        selected_frame = 'None'
 
     context = {
         'rock': rock,
