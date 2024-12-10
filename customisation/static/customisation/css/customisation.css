@@ -1,3 +1,5 @@
+/* Rock customisation tool */
+
 #customisation-image .col-md-6,
 #customisation-image .col-10 {
     padding-right: 0;
@@ -48,5 +50,27 @@
     border-radius: 20px;
 }
 
+/* Text input styles - copied from adoptions.css and edited */
 
+textarea {
+    box-sizing: border-box;
+    padding: 1em 1em;
+    color: #4e5661;
+    border: 1px solid #4e5661;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+textarea::placeholder {
+    color: #aab7c4;
+}
+
+textarea:focus,
+textarea:active {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
 
