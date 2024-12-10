@@ -21,12 +21,11 @@ def customisation(request, rock_id):
         selected_accessories = request.POST.getlist('accessory')
         selected_frame = request.POST.get('frame')
 
-        for x in range(len(selected_accessories)):
-            selected_accessories[x] = int(selected_accessories[x])
+        selected_accessories = [int(x) for x in selected_accessories if x.isdigit()]
 
         customisation_json = {
             'accessories': selected_accessories,
-            'frame': int(selected_frame) if selected_frame != 'frame_none' else None,
+            'frame': int(selected_frame) if selected_frame and selected_frame != 'frame_none' else None,
         }
 
         rock.accessories = customisation_json
