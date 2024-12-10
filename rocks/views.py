@@ -25,12 +25,15 @@ def rockprofile(request, rock_id):
     accessories = Accessories.objects.filter(type="accessory")
     frames = Accessories.objects.filter(type="frame")
 
-    if rock.accessories != "":
+    if rock.accessories and rock.accessories != "None":
         selected_accessories = rock.accessories['accessories']
         if rock.accessories['frame']:
             selected_frame = int(rock.accessories['frame'])
         else:
             selected_frame = 'None'
+    else:
+        selected_accessories = []
+        selected_frame = 'None'
 
     context = {
         'rock': rock,
