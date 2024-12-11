@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'adoptions',
     'userprofile',
     'customisation',
+    'gallery',
 
     # others
     'crispy_forms',

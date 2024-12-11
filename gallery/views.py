@@ -16,4 +16,4 @@ def gallery(request):
         'frames': frames
     }
 
-    return render(request, 'rocks/index.html', context)
+    return render(request, 'gallery/gallery.html', context)
