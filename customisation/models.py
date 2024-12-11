@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.html import mark_safe
 from django.contrib.auth.models import User
 
 
@@ -14,6 +15,13 @@ class Accessories(models.Model):
 
     def __str__(self):
         return self.name
+
+    def image_tag(self):
+        if self.image:
+            return mark_safe('<img src="/media/%s" width="150" height="150" />' % (self.image))
+        return "(No image)"
+
+    image_tag.short_description = 'Image'
 
 
 class AccessoryRequest(models.Model):
