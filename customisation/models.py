@@ -1,3 +1,4 @@
+import os
 from django.db import models
 from django.utils.html import mark_safe
 from django.contrib.auth.models import User
@@ -18,7 +19,10 @@ class Accessories(models.Model):
 
     def image_tag(self):
         if self.image:
-            return mark_safe('<img src="/media/%s" width="150" height="150" />' % (self.image))
+            if 'USE_AWS' in os.environ:
+                return mark_safe('<img src="https://the-rockhouse.s3.amazonaws.com/media/%s" width="150" height="150" />' % (self.image))
+            else:
+                return mark_safe('<img src="/media/%s" width="150" height="150" />' % (self.image))
         return "(No image)"
 
     image_tag.short_description = 'Image'
