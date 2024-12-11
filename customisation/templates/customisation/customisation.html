@@ -89,7 +89,7 @@
                   </div>
               </div>
               <p class="text-muted small mt-5">Can't find what you're looking for?<br>
-              <strong><a href="#">Request a custom accessory!</a></strong></p>
+              <strong><a href="{% url 'accessory_request' %}">Request a custom accessory!</a></strong></p>
               <textarea rows="8" name="usernotes" class="mt-5 w-75" placeholder="Tell us something about {{rock.name}}...">{{user_notes}}</textarea><br>
               <button class="mt-5 btn btn-dark">CANCEL</button>
               <input class="mt-5 btn btn-dark" type="submit" value="SAVE CHANGES">
