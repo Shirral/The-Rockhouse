@@ -2,8 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib import messages
+from .forms import AccessoryRequestForm
 from rocks.models import Rock
-from .models import Accessories, AccessoryRequest
+from .models import Accessories
 
 
 def customisation(request, rock_id):
@@ -61,26 +62,20 @@ def customisation(request, rock_id):
 @login_required
 def accessory_request(request):
 
+    form = AccessoryRequestForm()
+
     if request.method == "POST":
-        user = request.user
-        accessory_name = request.POST.get('accessory_name')
-        accessory_colour = request.POST.get('accessory_colour')
-        accessory_type = request.POST.get('accessory_type')
-        accessory_description = request.POST.get('accessory_description')
-        accessory_example = request.FILES.get('accessory_example')
+        # use the data from the existing html form and bind 
+        # them to the form in the backend for validation
+        form = AccessoryRequestForm(request.POST, request.FILES)
 
-        request_form_data = {
-            'name': accessory_name,
-            'colour': accessory_colour,
-            'type': accessory_type,
-            'description': accessory_description,
-            'image': accessory_example,
-            'user': user
-        }
+        if form.is_valid():
+            accessory_request = form.save(commit=False)
+            accessory_request.user = request.user
+            accessory_request.save()
+            messages.success(request, "Accessory request submitted. Thank you!")
+            return redirect(reverse('myprofile'))
+        else:
+            messages.error(request, "Uh-oh, something's not quite right. Please fix the highlighted fields and try again!")
 
-        AccessoryRequest.objects.create(**request_form_data)
-
-        messages.success(request, "Accessory request submitted. Thank you!")
-        return redirect(reverse('myprofile'))
-
-    return render(request, 'customisation/accessory_request.html')
+    return render(request, 'customisation/accessory_request.html', {'form': form})

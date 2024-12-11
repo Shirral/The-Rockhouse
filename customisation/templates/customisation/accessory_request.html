@@ -18,29 +18,44 @@
                         {% csrf_token %}
                         <div class="form-group w-75 mx-auto text-left mt-5">
                             <label for="accessory_name"><strong>Accessory name:</strong></label><br>
-                            <input type="text" class=" w-100" name="accessory_name" id="accessory_name">
+                            <input type="text" class=" w-100" name="name" id="accessory_name">
+                            {% if form.errors.name %}
+                            <p class="error">{{ form.errors.name.0 }}</p>
+                            {% endif %}
                         </div>
                         <div class="form-group w-75 mx-auto text-left mt-3">
                             <label for="accessory_colour"><strong>Accessory colour:</strong></label><br>
-                            <input type="text" class="w-100" id="accessory_colour" name="accessory_colour">
+                            <input type="text" class="w-100" id="accessory_colour" name="colour">
+                            {% if form.errors.colour %}
+                                <p class="error">{{ form.errors.colour.0 }}</p>
+                            {% endif %}
                         </div>
                         <div class="form-group w-75 mx-auto text-left mt-3">
                             <label for="accessory_type"><strong>Accessory type:</strong></label><br>
-                            <select class="w-100" id="accessory_type" name="accessory_type">
+                            <select class="w-100" id="accessory_type" name="type">
                                 <option>Accessory</option>
                                 <option>Frame</option>
                             </select>
+                            {% if form.errors.type %}
+                                <p class="error">{{ form.errors.type.0 }}</p>
+                            {% endif %}
                         </div>
                         <div class="form-group w-75 mx-auto text-left mt-3">
                             <label for="accessory_description"><strong>Accessory description:</strong></label><br>
-                            <textarea rows="8" name="accessory_description" id="accessory_description" class="w-100 request-form-textarea" placeholder="Describe the accessory you want to see in the Rockhouse..."></textarea><br>
+                            <textarea rows="8" name="description" id="accessory_description" class="w-100 request-form-textarea" placeholder="Describe the accessory you want to see in the Rockhouse..."></textarea><br>
+                            {% if form.errors.description %}
+                                <p class="error">{{ form.errors.description.0 }}</p>
+                            {% endif %}
                         </div>
                         <div class="w-75 mx-auto text-left mt-3">
                             <label for="accessory_example"><strong>
                                 If you can provide a picture of an example of what you have in mind, please upload it below:
                             </strong></label>
-                            <input type="file" class="w-100" id="accessory_example" name="accessory_example">
-                          </div>
+                            <input type="file" class="w-100" id="accessory_example" name="image">
+                            {% if form.errors.image %}
+                                <p class="error">{{ form.errors.image.0 }}</p>
+                            {% endif %}
+                        </div>
                         <button class="mt-5 btn btn-dark">CANCEL</button>
                         <input class="mt-5 btn btn-dark" type="submit" value="SEND REQUEST">
                       </form>

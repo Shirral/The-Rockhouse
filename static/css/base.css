@@ -28,6 +28,12 @@ footer a:hover {
     color: black;
 }
 
+.alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
 /* from Bulma */
 .icon {
     align-items: center;
