@@ -27,7 +27,7 @@
         <nav class="mb-4">
             <a href="{% url 'adoptions' %}" class="mx-4 {% if active_page == 'adoptions' %}active{% endif %}">Available Adoptions</a>
             <a href="#" class="mx-4 {% if active_page == 'about' %}active{% endif %}">About</a>
-            <a href="#" class="mx-4 {% if active_page == 'gallery' %}active{% endif %}">Gallery</a>
+            <a href="{% url 'gallery' %}" class="mx-4 {% if active_page == 'gallery' %}active{% endif %}">Gallery</a>
         </nav>
     </div>
 </div>

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'rocks/css/rocks.css' %}">
+{% endblock %}
+
+{% block header %}
+    {% include 'includes/nav-primary.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <hr>
+        <div class="rock-grid row">
+            {% for rock in rocks %}
+                    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center my-3">
+                        <div class="card" style="width: 18rem;">
+                            <a href="{% url 'rockprofile' rock.id %}">
+                                <div id="customisation-image-inner-div">
+                                    <img src="{{ rock.image.url }}" class="card-img-top" alt="image of {{rock.name}}">
+                                    <div id="accessories-layer">
+                                        {% for accessory in accessories %}
+                                            {% if accessory.id in rock.accessories.accessories %}
+                                                <img src="{{ accessory.image.url }}" class="img-fluid gallery-display"  alt="image of {{accessory.name}}" data-accessory-id="{{accessory.id}}">
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div id="frames-layer">
+                                        {% if rock.accessories.frame != 'None' %}
+                                            {% for frame in frames %}
+                                                {% if frame.id == rock.accessories.frame %}
+                                                    <img src="{{ frame.image.url }}" class="img-fluid gallery-display" alt="image of {{frame.name}}">
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="card-body">
+                            <h5 class="card-title">{{rock.name}}</h5>
+                            <p class="card-text">{{rock.short_description}}</p>
+                            <a href="{% url 'rockprofile' rock.id %}" class="text-muted">See more...</a>
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
