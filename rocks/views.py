@@ -5,7 +5,7 @@ from customisation.models import Accessories
 
 def adoptions(request):
 
-    rocks = Rock.objects.all()
+    rocks = Rock.objects.filter(is_owned=False)
     accessories = Accessories.objects.filter(type="accessory")
     frames = Accessories.objects.filter(type="frame")
 
