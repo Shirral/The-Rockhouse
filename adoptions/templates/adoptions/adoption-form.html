@@ -54,7 +54,6 @@
                                 </fieldset>
                                 <div class="text-center">
                                     <input type="submit" class="btn btn-dark mb-3" value="COMPLETE ADOPTION"><br>
-                                    {% comment %} <button class="btn btn-dark mb-5" href="{% url 'adoption_form' rock.id %}">PROCEED</button> {% endcomment %}
                                     <a class="text-muted small" href="{% url 'rockprofile' rock.id %}">< Back to {{rock.name}}'s page</a>
                                 </div>
                             </div>
@@ -62,7 +61,7 @@
                     </form>
                 {% else %}
                     <div class="text-center">
-                        <h5>Please <strong><a href="{{ login_url }}">log in</a></strong> or <strong><a href="{{ signup_url }}">register</a></strong> to fill the adoption form.</h5>
+                        <h5>Please <strong><a href="{% url 'account_login' %}">log in</a></strong> or <strong><a href="{% url 'account_signup' %}">register</a></strong> to fill the adoption form.</h5>
                         <a href="{% url 'account_login' %}" class="btn btn-secondary mt-5" role="button">Login/Register</a>
                     </div>
                 {% endif %}
