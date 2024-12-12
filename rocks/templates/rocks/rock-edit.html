@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'rocks/css/rocks.css' %}">
+{% endblock %}
+
+{% block header %}
+    {% include 'includes/nav-secondary.html' %}
+{% endblock %}
+
+{% block content %}
+        <div class="container">
+            <div class="rock-preview-info mt-5">
+                <div class="row">
+                    <div class="col-12 col-md-6 justify-content-center">
+                        <img src="{{ rock.image.url }}" class="img-fluid custom-rounded p-4" alt="image of {{rock.name}}">
+                        <div id="accessories-layer">
+                            {% for accessory in accessories %}
+                              {% if accessory.id in selected_accessories %}
+                                    <img src="{{ accessory.image.url }}" class="img-fluid"  alt="image of {{accessory.name}}">
+                              {% endif %}
+                            {% endfor %}
+                          </div>
+                          <div id="frames-layer">
+                            {% if selected_frame != 'None' %}
+                              {% for frame in frames %}
+                                {% if frame.id == selected_frame %}
+                                  <img src="{{ frame.image.url }}" class="img-fluid" alt="image of {{frame.name}}">
+                                {% endif %}
+                              {% endfor %}
+                            {% endif %}
+                          </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="p-4">
+                            <h1 class="mb-4">{{rock.name}}</h1>
+                            <p><strong>Material:</strong> {{rock.material}}</p>
+                            <p><strong>Texture:</strong> {{rock.texture}}</p>
+                            <p><strong>Personality:</strong> {{rock.personality}}</p>
+                            {% if rock.is_owned == False %}
+                                <p><strong>Available for adoption:</strong> <strong>YES!</strong></p>
+                                <p><strong>Adoption cost:</strong> £{{rock.price}}</p>        
+                            {% else %}
+                                <p><strong>Owned by:</strong> <a href="{% url 'profile' rock.owner %}">{{rock.owner}}</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p class="p-4">
+                        {{rock.description}}
+                    </p>
+                    {% if rock.user_notes %}
+                        <p class="mx-4 mb-2"><strong>{{rock.owner}}'s notes about {{rock.name}}:</strong></p>
+                        <p class="mx-4 mb-4 pb-3">"{{rock.user_notes}}"</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% if rock.is_owned == False %}
+                <div class="mt-5 text-center">
+                    <p><strong>{{rock.name}} is available for adoption!</strong></p>
+                    <a href="{% url 'adoption_confirm' rock.id %}" class="btn btn-dark mb-5">ADOPT NOW</a><br>
+                    <a class="text-muted small" href="{% url 'adoptions' %}">< Back to all available rocks</a>
+                </div>
+            {% endif %}
+        </div>
+{% endblock %}

@@ -39,3 +39,14 @@
     left: 0;
     border-radius: 5px;
 }
+
+#rock_name {
+    width: 100%;
+    height: auto;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+}
+
+input[type='text'] {
+    width: 100%;
+}
