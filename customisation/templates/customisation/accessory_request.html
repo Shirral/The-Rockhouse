@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group w-75 mx-auto text-left mt-3">
                             <label for="accessory_description"><strong>Accessory description:</strong></label><br>
-                            <textarea rows="8" name="description" id="accessory_description" class="w-100 request-form-textarea" placeholder="Describe the accessory you want to see in the Rockhouse..."></textarea><br>
+                            <textarea rows="8" maxlength="600" name="description" id="accessory_description" class="w-100 request-form-textarea" placeholder="Describe the accessory you want to see in the Rockhouse..."></textarea><br>
                             {% if form.errors.description %}
                                 <p class="error">{{ form.errors.description.0 }}</p>
                             {% endif %}
