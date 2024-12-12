@@ -12,69 +12,96 @@
 
 {% block content %}
         <div class="container">
-            <form action="" method="POST" class="allauth">
                 <div class="rock-preview-info mt-5">
-                    <div class="row">
-                        <div class="col-12 col-md-6 justify-content-center">
-                            <img src="{{ rock.image.url }}" class="img-fluid custom-rounded p-4" alt="image of {{rock.name}}">
-                            <div id="accessories-layer">
-                                {% for accessory in accessories %}
-                                {% if accessory.id in selected_accessories %}
-                                        <img src="{{ accessory.image.url }}" class="img-fluid"  alt="image of {{accessory.name}}">
-                                {% endif %}
-                                {% endfor %}
-                            </div>
-                            <div id="frames-layer">
-                                {% if selected_frame != 'None' %}
-                                {% for frame in frames %}
-                                    {% if frame.id == selected_frame %}
-                                    <img src="{{ frame.image.url }}" class="img-fluid" alt="image of {{frame.name}}">
+                    <form action="" method="POST" class="allauth">
+                        <div class="row">
+                            <div class="col-12 col-md-6 justify-content-center">
+                                <img src="{{ rock.image.url }}" class="img-fluid custom-rounded p-4" alt="image of {{rock.name}}">
+                                <div id="accessories-layer">
+                                    {% for accessory in accessories %}
+                                    {% if accessory.id in selected_accessories %}
+                                            <img src="{{ accessory.image.url }}" class="img-fluid"  alt="image of {{accessory.name}}">
                                     {% endif %}
-                                {% endfor %}
-                                {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div id="frames-layer">
+                                    {% if selected_frame != 'None' %}
+                                    {% for frame in frames %}
+                                        {% if frame.id == selected_frame %}
+                                        <img src="{{ frame.image.url }}" class="img-fluid" alt="image of {{frame.name}}">
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="p-4">
+                                    <h1 class="mb-4">
+                                        <input type="text" name="name" id="rock_name" value="{{rock.name}}" placeholder="Name your rock..." required>
+                                    </h1>
+                                    <fieldset class="mb-3">
+                                        <label for="rock_material"><strong>Material:</strong></label>
+                                        <input type="text" name="material" id="rock_material" value="{{rock.material}}" placeholder="Material..." required>
+                                    </fieldset>
+                                    <fieldset class="mb-3">
+                                        <label for="rock_texture"><strong>Texture:</strong></label>
+                                        <input type="text" name="texture" id="rock_texture" value="{{rock.texture}}" placeholder="Texture..." required>
+                                    </fieldset>
+                                    <fieldset class="mb-3">
+                                        <label for="rock_texture"><strong>Personality:</strong></label>
+                                        <input type="text" name="personality" id="rock_personality" value="{{rock.personality}}" placeholder="Personality..." required>
+                                    </fieldset>
+                                    <fieldset class="mb-3">
+                                        <label for="rock_owner"><strong>Owner:</strong></label>
+                                        <select name="user" id="rock_owner">
+                                            <option value="" disabled selected>[Rock not owned]</option>
+                                            {% for user in users %}
+                                                <option value="{{ user.id }}" {% if user.id == rock.owner.id %}selected{% endif %}>{{ user.username }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </fieldset>
+                                    <fieldset class="mb-3">
+                                        <label for="rock_price"><strong>Adoption cost in £:</strong></label>
+                                        <input type="number" name="price" id="rock_price" value="{{ rock.price }}" step="0.01" min="0" required>
+                                    </fieldset>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
-                            <div class="p-4">
-                                <h1 class="mb-4">
-                                    <input type="text" name="name" id="rock_name" value="{{rock.name}}" placeholder="Name your rock..." required>
-                                </h1>
-                                <fieldset class="mb-3">
-                                    <label for="rock_material"><strong>Material:</strong></label>
-                                    <input type="text" name="material" id="rock_material" value="{{rock.material}}" placeholder="Material..." required>
-                                </fieldset>
-                                <fieldset class="mb-3">
-                                    <label for="rock_texture"><strong>Texture:</strong></label>
-                                    <input type="text" name="texture" id="rock_texture" value="{{rock.texture}}" placeholder="Texture..." required>
-                                </fieldset>
-                                <fieldset class="mb-3">
-                                    <label for="rock_texture"><strong>Personality:</strong></label>
-                                    <input type="text" name="personality" id="rock_personality" value="{{rock.personality}}" placeholder="Personality..." required>
-                                </fieldset>
-                                <fieldset class="mb-3">
-                                    <label for="rock_owner"><strong>Owner:</strong></label>
-                                    <select name="user" id="rock_owner">
-                                        <option value="" disabled selected>[Rock not owned]</option>
-                                        {% for user in users %}
-                                            <option value="{{ user.id }}" {% if user.id == rock.owner.id %}selected{% endif %}>{{ user.username }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </fieldset>
-                                <fieldset class="mb-3">
-                                    <label for="rock_price"><strong>Adoption cost in £:</strong></label>
-                                    <input type="number" name="price" id="rock_price" value="{{ rock.price }}" step="0.01" min="0" required>
-                                </fieldset>
+                        <div class="mx-4 mb-5">
+                            <textarea maxlength="800" class="p-4" name="description" id="rock_description" rows="6" placeholder="Describe your rock...">{{rock.description}}</textarea>
+                        </div>
+                        <div class="text-center">
+                            <input type="submit" class="btn btn-dark mb-5" value="SAVE CHANGES">
+                        </div>
+                    </form>
+                    <div class="mb-5 text-center">
+                        <a class="text-danger small" href="#" data-toggle="modal" data-target="#deleteRockModal">Delete rock</a>
+                    </div>
+
+                    <div class="modal fade" id="deleteRockModal" tabindex="-1" aria-labelledby="deleteRockModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-danger text-white">
+                                    <h5 class="modal-title" id="deleteRockModalLabel">Confirm Deletion</h5>
+                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to delete this rock? {% if rock.is_owned == True %}
+                                        It is owned by user <strong>{{rock.owner}}</strong>!{%endif%} This action cannot be undone.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+                                    <form action="" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger">Delete Rock</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="mx-4 mb-5">
-                        <textarea maxlength="800" class="p-4" name="description" id="rock_description" rows="6" placeholder="Describe your rock...">{{rock.description}}</textarea>
-                    </div>
-                    <div class="text-center">
-                        <input type="submit" class="btn btn-dark mb-5" value="SAVE CHANGES">
                     </div>
                 </div>
-            </form>
             <div class="mt-5 text-center">
                 <a class="text-muted small" href="{% url 'rockprofile' rock.id %}">< Back to {{rock.name}}'s page</a>
             </div>
