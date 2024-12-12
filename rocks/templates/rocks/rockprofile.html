@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="p-4">
-                            <h1 class="mb-4">{{rock.name}}</h1>
+                            <h1 class="mb-4">{{rock.name}} {% if rock.is_owned == False %}{% if user.is_authenticated and user.is_superuser %}<span class="small text-muted"><a href="{% url 'rock_edit' rock.id %}">[edit rock]</a></span>{% endif %}{% endif %}</h1>
                             <p><strong>Material:</strong> {{rock.material}}</p>
                             <p><strong>Texture:</strong> {{rock.texture}}</p>
                             <p><strong>Personality:</strong> {{rock.personality}}</p>
