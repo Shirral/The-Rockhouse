@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Rock
 from customisation.models import Accessories
@@ -74,3 +75,11 @@ def rock_edit(request, rock_id):
     }
 
     return render(request, 'rocks/rock-edit.html', context)
+
+
+def rock_delete(request, rock_id):
+    if request.method == "POST":
+        rock = get_object_or_404(Rock, id=rock_id)
+        rock.delete()
+        messages.success(request, "Rock deleted successfully!")
+        return redirect("adoptions")

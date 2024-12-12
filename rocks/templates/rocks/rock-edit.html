@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
-                                    <form action="" method="POST">
+                                    <form action="{% url 'rock_delete' rock.id %}" method="POST">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-danger">Delete Rock</button>
                                     </form>
