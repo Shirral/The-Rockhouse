@@ -2,7 +2,10 @@
 which used the code from Stripe's documentation */
 
 .StripeElement,
-.stripe-style-input {
+.stripe-style-input,
+.allauth input[type="text"],
+.allauth input[type="email"],
+.allauth input[type="password"] {
   box-sizing: border-box;
   height: 40px;
   padding: 0.2em 1em;
@@ -30,6 +33,9 @@ which used the code from Stripe's documentation */
 }
 
 .stripe-style-input,
+.allauth input[type="text"],
+.allauth input[type="email"],
+.allauth input[type="password"],
 #card-element {
     color: #4e5661;
     border: 1px solid #4e5661;
