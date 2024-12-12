@@ -11,6 +11,9 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'myprofile' %}">Your profile</a>
+                        {% if user.is_authenticated and user.is_superuser %}
+                        <a  class="dropdown-item" href="{% url 'admin:index' %}">Admin Panel</a>
+                        {% endif %}
                         <a class="dropdown-item" href="{% url 'accessory_request' %}">Accessory Request</a>
                         <a class="dropdown-item" href="{% url 'account_email' %}">Manage email information</a>
                         <a class="dropdown-item" href="{% url 'account_change_password' %}">Change password</a>
