@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.models import User
 from .models import Rock
 from customisation.models import Accessories
 
@@ -49,6 +50,7 @@ def rockprofile(request, rock_id):
 def rock_edit(request, rock_id):
 
     rock = get_object_or_404(Rock, pk=rock_id)
+    users = User.objects.all()
     accessories = Accessories.objects.filter(type="accessory")
     frames = Accessories.objects.filter(type="frame")
 
@@ -64,6 +66,7 @@ def rock_edit(request, rock_id):
 
     context = {
         'rock': rock,
+        'users': users,
         'accessories': accessories,
         'frames': frames,
         'selected_frame': selected_frame,

@@ -5,7 +5,10 @@ which used the code from Stripe's documentation */
 .stripe-style-input,
 .allauth input[type="text"],
 .allauth input[type="email"],
-.allauth input[type="password"] {
+.allauth input[type="password"],
+.allauth input[type="number"],
+.allauth textarea,
+.allauth select {
   box-sizing: border-box;
   height: 40px;
   padding: 0.2em 1em;
@@ -20,7 +23,19 @@ which used the code from Stripe's documentation */
 
 .StripeElement--focus,
 .stripe-style-input:focus,
-.stripe-style-input:active {
+.stripe-style-input:active,
+.allauth input[type="text"]:focus,
+.allauth input[type="email"]:focus,
+.allauth input[type="password"]:focus,
+.allauth input[type="number"]:focus,
+.allauth textarea:focus,
+.allauth select:focus,
+.allauth input[type="text"]:active,
+.allauth input[type="email"]:active,
+.allauth input[type="password"]:active,
+.allauth input[type="number"]:active,
+.allauth textarea:active,
+.allauth select:active {
   box-shadow: 0 1px 3px 0 #cfd7df;
 }
 
@@ -36,6 +51,9 @@ which used the code from Stripe's documentation */
 .allauth input[type="text"],
 .allauth input[type="email"],
 .allauth input[type="password"],
+.allauth input[type="number"],
+.allauth textarea,
+.allauth select,
 #card-element {
     color: #4e5661;
     border: 1px solid #4e5661;

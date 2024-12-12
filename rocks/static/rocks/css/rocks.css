@@ -47,6 +47,13 @@
     padding-bottom: 0.2em;
 }
 
-input[type='text'] {
+input[type='text'],
+input[type="number"],
+textarea,
+select {
     width: 100%;
+}
+
+#rock_description {
+    height: auto;
 }
