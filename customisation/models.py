@@ -33,7 +33,7 @@ class AccessoryRequest(models.Model):
     name = models.CharField(max_length=50)
     colour = models.CharField(max_length=50, null=True, blank=True)
     type = models.CharField(max_length=50)
-    description = models.TextField()
+    description = models.TextField(max_length=600)
     image = models.ImageField(upload_to="accessory_requests/", blank=True, null=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     user = models.ForeignKey(User, null=False, blank=False, on_delete=models.SET(None))
