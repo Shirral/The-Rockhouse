@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Rock
+from .forms import RockEditForm
 from customisation.models import Accessories
 
 
@@ -55,6 +56,8 @@ def rock_edit(request, rock_id):
     accessories = Accessories.objects.filter(type="accessory")
     frames = Accessories.objects.filter(type="frame")
 
+    form = RockEditForm(instance=rock)
+
     if rock.accessories and rock.accessories != "None":
         selected_accessories = rock.accessories['accessories']
         if rock.accessories['frame']:
@@ -66,19 +69,29 @@ def rock_edit(request, rock_id):
         selected_frame = 'None'
 
     if request.method == "POST":
+
+        form = RockEditForm(request.POST, instance=rock)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Rock details updated!")
+            return redirect("rockprofile", rock_id=rock.id)
+        else:
+            messages.error(request, "Uh-oh, something's not quite right. Please fix the highlighted fields and try again!")
+
         # use current values as fallback values in case
         # no new value is provided
-        rock.name = request.POST.get("name", rock.name)
-        rock.material = request.POST.get("material", rock.material)
-        rock.texture = request.POST.get("texture", rock.texture)
-        rock.personality = request.POST.get("personality", rock.personality)
-        rock.description = request.POST.get("description", rock.description)
-        rock.price = request.POST.get("price", rock.price)
+        # rock.name = request.POST.get("name", rock.name)
+        # rock.material = request.POST.get("material", rock.material)
+        # rock.texture = request.POST.get("texture", rock.texture)
+        # rock.personality = request.POST.get("personality", rock.personality)
+        # rock.description = request.POST.get("description", rock.description)
+        # rock.price = request.POST.get("price", rock.price)
 
-        rock.save()
+        # rock.save()
 
-        messages.success(request, "Rock details updated!")
-        return redirect("rockprofile", rock_id=rock.id)
+        # messages.success(request, "Rock details updated!")
+        # return redirect("rockprofile", rock_id=rock.id)
 
     context = {
         'rock': rock,
@@ -86,7 +99,8 @@ def rock_edit(request, rock_id):
         'accessories': accessories,
         'frames': frames,
         'selected_frame': selected_frame,
-        'selected_accessories': selected_accessories
+        'selected_accessories': selected_accessories,
+        'form': form
     }
 
     return render(request, 'rocks/rock-edit.html', context)

@@ -15,6 +15,13 @@
                 <div class="rock-preview-info mt-5">
                     <form action="" method="POST" class="allauth">
                         {% csrf_token %}
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {% for error in form.non_field_errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                         <div class="row">
                             <div class="col-12 col-md-6 justify-content-center">
                                 <img src="{{ rock.image.url }}" class="img-fluid custom-rounded p-4" alt="image of {{rock.name}}">
@@ -39,28 +46,70 @@
                                 <div class="p-4">
                                     <h1 class="mb-4">
                                         <input type="text" name="name" id="rock_name" value="{{rock.name}}" placeholder="Name your rock..." required>
+                                        {% if form.name.errors %}
+                                            <div class="text-danger small">
+                                                {% for error in form.name.errors %}
+                                                    <p>{{ error }}</p>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
                                     </h1>
                                     <fieldset class="mb-3">
                                         <label for="rock_material"><strong>Material:</strong></label>
                                         <input type="text" name="material" id="rock_material" value="{{rock.material}}" placeholder="Material..." required>
+                                        {% if form.material.errors %}
+                                            <div class="text-danger small">
+                                                {% for error in form.material.errors %}
+                                                    <p>{{ error }}</p>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
                                     </fieldset>
                                     <fieldset class="mb-3">
                                         <label for="rock_texture"><strong>Texture:</strong></label>
                                         <input type="text" name="texture" id="rock_texture" value="{{rock.texture}}" placeholder="Texture..." required>
+                                        {% if form.texture.errors %}
+                                            <div class="text-danger small">
+                                                {% for error in form.texture.errors %}
+                                                    <p>{{ error }}</p>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
                                     </fieldset>
                                     <fieldset class="mb-3">
                                         <label for="rock_texture"><strong>Personality:</strong></label>
                                         <input type="text" name="personality" id="rock_personality" value="{{rock.personality}}" placeholder="Personality..." required>
+                                        {% if form.personality.errors %}
+                                            <div class="text-danger small">
+                                                {% for error in form.personality.errors %}
+                                                    <p>{{ error }}</p>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
                                     </fieldset>
                                     <fieldset class="mb-3">
                                         <label for="rock_price"><strong>Adoption cost in £:</strong></label>
                                         <input type="number" name="price" id="rock_price" value="{{ rock.price }}" step="0.01" min="0" required>
+                                        {% if form.price.errors %}
+                                            <div class="text-danger small">
+                                                {% for error in form.price.errors %}
+                                                    <p>{{ error }}</p>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
                                     </fieldset>
                                 </div>
                             </div>
                         </div>
                         <div class="mx-4 mb-5">
                             <textarea maxlength="800" class="p-4" name="description" id="rock_description" rows="6" placeholder="Describe your rock...">{{rock.description}}</textarea>
+                            {% if form.description.errors %}
+                                <div class="text-danger small">
+                                    {% for error in form.description.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
                         </div>
                         <div class="text-center">
                             <input type="submit" class="btn btn-dark mb-5" value="SAVE CHANGES">
