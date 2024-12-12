@@ -14,6 +14,7 @@
         <div class="container">
                 <div class="rock-preview-info mt-5">
                     <form action="" method="POST" class="allauth">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-12 col-md-6 justify-content-center">
                                 <img src="{{ rock.image.url }}" class="img-fluid custom-rounded p-4" alt="image of {{rock.name}}">
@@ -50,15 +51,6 @@
                                     <fieldset class="mb-3">
                                         <label for="rock_texture"><strong>Personality:</strong></label>
                                         <input type="text" name="personality" id="rock_personality" value="{{rock.personality}}" placeholder="Personality..." required>
-                                    </fieldset>
-                                    <fieldset class="mb-3">
-                                        <label for="rock_owner"><strong>Owner:</strong></label>
-                                        <select name="user" id="rock_owner">
-                                            <option value="" disabled selected>[Rock not owned]</option>
-                                            {% for user in users %}
-                                                <option value="{{ user.id }}" {% if user.id == rock.owner.id %}selected{% endif %}>{{ user.username }}</option>
-                                            {% endfor %}
-                                        </select>
                                     </fieldset>
                                     <fieldset class="mb-3">
                                         <label for="rock_price"><strong>Adoption cost in £:</strong></label>

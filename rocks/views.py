@@ -65,6 +65,21 @@ def rock_edit(request, rock_id):
         selected_accessories = []
         selected_frame = 'None'
 
+    if request.method == "POST":
+        # use current values as fallback values in case
+        # no new value is provided
+        rock.name = request.POST.get("name", rock.name)
+        rock.material = request.POST.get("material", rock.material)
+        rock.texture = request.POST.get("texture", rock.texture)
+        rock.personality = request.POST.get("personality", rock.personality)
+        rock.description = request.POST.get("description", rock.description)
+        rock.price = request.POST.get("price", rock.price)
+
+        rock.save()
+
+        messages.success(request, "Rock details updated!")
+        return redirect("rockprofile", rock_id=rock.id)
+
     context = {
         'rock': rock,
         'users': users,
