@@ -36,6 +36,7 @@ def customisation(request, rock_id):
         rock.user_notes = user_notes
         rock.save()
 
+        messages.success(request, "Changes saved!")
         return redirect('customisation', rock_id=rock.id)
 
     if rock.accessories and rock.accessories != "None":
