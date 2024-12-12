@@ -17,6 +17,9 @@ class Accessories(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = "Accessories"
+
     def image_tag(self):
         if self.image:
             if 'USE_AWS' in os.environ:
