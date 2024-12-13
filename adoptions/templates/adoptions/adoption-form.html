@@ -2,10 +2,12 @@
 {% load static %}
 
 {% block header %}
+    {% comment %} secondary navigation bar {% endcomment %}
     {% include 'includes/nav-secondary.html' %}
 {% endblock %}
 
 {% block extra_css %}
+    {% comment %} custom stylesheet for adoptions app {% endcomment %}
     <link rel="stylesheet" href="{% static 'adoptions/css/adoptions.css' %}">
 {% endblock %}
 
@@ -13,9 +15,12 @@
         <div class="container">
             <div class="mt-5">
                 <div class="row">
+                    {% comment %} rock image {% endcomment %}
                     <div class="col-12 col-md-3 justify-content-center">
-                        <img src="{{ rock.image.url }}" class="img-fluid custom-rounded p-4" alt="placeholder image">
+                        <img src="{{ rock.image.url }}" class="img-fluid custom-rounded p-4" alt="image of {{rock.name}}">
                     </div>
+
+                    {% comment %} adoption info {% endcomment %}
                     <div class="col-12 col-md-9">
                         <div class="p-4">
                             <h1 class="mb-4">{{rock.name}}</h1>
@@ -27,7 +32,10 @@
                 <hr>
             </div>
             <div class="mt-5">
+                {% comment %} form only available to logged in users {% endcomment %}
                 {% if user.is_authenticated %}
+
+                    {% comment %} adoption form - rendered via crispyforms {% endcomment %}
                     <form action="{% url 'adoption_form' rock.id %}" method="POST" id="adoption-form">
                         {% csrf_token %}
                         <div class="row">
@@ -60,6 +68,7 @@
                         </div>
                     </form>
                 {% else %}
+                    {% comment %} if user is not logged in {% endcomment %}
                     <div class="text-center">
                         <h5>Please <strong><a href="{% url 'account_login' %}">log in</a></strong> or <strong><a href="{% url 'account_signup' %}">register</a></strong> to fill the adoption form.</h5>
                         <a href="{% url 'account_login' %}" class="btn btn-secondary mt-5" role="button">Login/Register</a>
@@ -70,6 +79,7 @@
 {% endblock %}
 
 {% block postloadjs %}
+    {% comment %} Stripe script {% endcomment %}
     {{ block.super }}
     {{stripe_public_key | json_script:'id_stripe_public_key'}}
     {{client_secret | json_script:'id_client_secret'}}

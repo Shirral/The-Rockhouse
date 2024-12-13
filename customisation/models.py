@@ -4,6 +4,7 @@ from django.utils.html import mark_safe
 from django.contrib.auth.models import User
 
 
+# Accessories model
 class Accessories(models.Model):
 
     name = models.CharField(max_length=50)
@@ -17,9 +18,11 @@ class Accessories(models.Model):
     def __str__(self):
         return self.name
 
+    # fix the model name displaying incorrectly in Django admin
     class Meta:
         verbose_name_plural = "Accessories"
 
+    # display visual previews of accessories in Django admin
     def image_tag(self):
         if self.image:
             if 'USE_AWS' in os.environ:
@@ -37,6 +40,7 @@ class Accessories(models.Model):
     image_tag.short_description = 'Image'
 
 
+# AccessoryRequest model
 class AccessoryRequest(models.Model):
 
     name = models.CharField(max_length=50)

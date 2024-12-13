@@ -3,16 +3,20 @@
 {% load static %}
 
 {% block extra_css %}
+    {% comment %} custom stylesheet for the rocks app {% endcomment %}
     <link rel="stylesheet" href="{% static 'rocks/css/rocks.css' %}">
 {% endblock %}
 
 {% block header %}
+    {% comment %} primary navigation bar {% endcomment %}
     {% include 'includes/nav-primary.html' %}
 {% endblock %}
 
 {% block content %}
     <div class="container">
         <hr>
+
+        {% comment %} information about The Rockhouse {% endcomment %}
         <section>
             <div class="row mt-5">
                 <div class="col-12 col-md-8 text-justify">
@@ -26,6 +30,8 @@
                 </div>
             </div>
         </section>
+
+        {% comment %} information about the history of The Rockhouse {% endcomment %}
         <section>
             <div class="row mt-5">
                 <div class="col-12 col-md-4 w-100 order-last order-md-first">
@@ -39,6 +45,8 @@
                 </div>
             </div>
         </section>
+
+        {% comment %} information on the core team of The Rockhouse {% endcomment %}
         <section>
             <h4 class="text-center my-5">Core team</h4>
             <div>

@@ -3,23 +3,35 @@
 {% load static %}
 
 {% block extra_css %}
+    {% comment %} custom stylesheet for the rocks app {% endcomment %}
     <link rel="stylesheet" href="{% static 'rocks/css/rocks.css' %}">
 {% endblock %}
 
 {% block header %}
+    {% comment %} primary navigation bar {% endcomment %}
     {% include 'includes/nav-primary.html' %}
 {% endblock %}
 
 {% block content %}
     <div class="container">
         <hr>
+
+        {% comment %} rock grid {% endcomment %}
         <div class="rock-grid row">
+
+            {% comment %} loop through rocks to display them {% endcomment %}
             {% for rock in rocks %}
                 <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center my-3">
+                    
+                    {% comment %} display rocks in cards {% endcomment %}
                     <div class="card" style="width: 18rem;">
                         <a href="{% url 'rockprofile' rock.id %}">
                             <div class="customisation-image-inner-div">
+                                
+                                {% comment %} base image {% endcomment %}
                                 <img src="{{ rock.image.url }}" class="card-img-top" alt="image of {{rock.name}}">
+                                
+                                {% comment %} accessories layer {% endcomment %}
                                 <div class="accessories-layer">
                                     {% for accessory in accessories %}
                                         {% if accessory.id in rock.accessories.accessories %}
@@ -27,6 +39,8 @@
                                         {% endif %}
                                     {% endfor %}
                                 </div>
+                                
+                                {% comment %} frames layer {% endcomment %}
                                 <div class="frames-layer">
                                     {% if rock.accessories.frame != 'None' %}
                                         {% for frame in frames %}
@@ -38,6 +52,8 @@
                                 </div>
                             </div>
                         </a>
+                        
+                        {% comment %} rock description {% endcomment %}
                         <div class="card-body">
                             <h5 class="card-title">{{rock.name}}{% if user.is_authenticated and user.is_superuser %}<span class="small text-muted float-right"><a href="{% url 'rock_edit' rock.id %}">[edit]</a></span>{% endif %}</h5>
                             <p class="card-text">{{rock.short_description}}</p>

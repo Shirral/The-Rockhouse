@@ -9,9 +9,14 @@ import stripe
 
 
 def adoption_confirm(request, rock_id):
+    '''
+    View for the adoption-confirm page
+    '''
 
     rock = get_object_or_404(Rock, pk=rock_id)
 
+    # Redirect the user and show them a message
+    # if a rock they're trying to adopt already has an owner
     if rock.is_owned is True:
         messages.info(
             request,
@@ -28,12 +33,17 @@ def adoption_confirm(request, rock_id):
 
 
 def adoption_form(request, rock_id):
+    '''
+    View for the adoption-form page
+    '''
 
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     rock = get_object_or_404(Rock, pk=rock_id)
     cost = rock.price
 
+    # Redirect the user and show them a message if a rock
+    # they're trying to adopt already has an owner
     if rock.is_owned is True:
         messages.info(
             request,
@@ -43,6 +53,7 @@ def adoption_form(request, rock_id):
         return redirect(reverse('adoptions'))
 
     if request.method == 'POST':
+        # Gather the form data in a dictionary
         form_data = {
             'full_name': request.POST['full_name'],
             'address1': request.POST['address1'],
@@ -52,10 +63,12 @@ def adoption_form(request, rock_id):
             'country': request.POST['country'],
         }
 
+        # Validate the form and save it, but don't submit yet
         adoption_form = AdoptionForm(form_data)
         if adoption_form.is_valid():
             adoption = adoption_form.save(commit=False)
 
+            # add additional information to the form data before submitting it
             adoption.rock = rock
             adoption.user = request.user
             adoption.cost = cost
@@ -65,7 +78,8 @@ def adoption_form(request, rock_id):
             payment_intent_id = request.POST.get('payment_intent_id')
             adoption.stripe_id = payment_intent_id
 
-            # get payment confirmation from the PI
+            # get payment confirmation from Stripe's updated payment intent;
+            # only proceed if the payment was successful
             stripe.api_key = stripe_secret_key
             try:
                 intent = stripe.PaymentIntent.retrieve(payment_intent_id)
@@ -82,6 +96,7 @@ def adoption_form(request, rock_id):
 
             adoption.save()
 
+            # change the ownership status of the rock
             rock.is_owned = True
             rock.owner = request.user
             rock.save()
@@ -91,6 +106,7 @@ def adoption_form(request, rock_id):
         )
 
     else:
+        # prepare the form
         stripe_cost = round(cost * 100)
         adoption_form = AdoptionForm()
         stripe.api_key = stripe_secret_key
@@ -111,6 +127,10 @@ def adoption_form(request, rock_id):
 
 
 def adoption_success(request, adoption_number):
+    '''
+    Adoption_success view - adoption confirmation page
+    '''
+
     adoption = get_object_or_404(RockAdoption, adoption_number=adoption_number)
 
     messages.success(request, f'{adoption.rock} was successfully adopted!')

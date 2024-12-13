@@ -2,10 +2,12 @@
 {% load static %}
 
 {% block extra_css %}
+    {% comment %} custom stylesheet for the rocks app {% endcomment %}
     <link rel="stylesheet" href="{% static 'rocks/css/rocks.css' %}">
 {% endblock %}
 
 {% block header %}
+    {% comment %} secondary navigation bar {% endcomment %}
     {% include 'includes/nav-secondary.html' %}
 {% endblock %}
 
@@ -13,8 +15,14 @@
         <div class="container">
             <div class="rock-preview-info mt-5">
                 <div class="row">
+
+                    {% comment %} image column {% endcomment %}
                     <div class="col-12 col-md-6 justify-content-center">
+                        
+                        {% comment %} base rock image {% endcomment %}
                         <img src="{{ rock.image.url }}" class="img-fluid custom-rounded p-4" alt="image of {{rock.name}}">
+                        
+                        {% comment %} accessories layer {% endcomment %}
                         <div class="accessories-layer">
                             {% for accessory in accessories %}
                               {% if accessory.id in selected_accessories %}
@@ -22,6 +30,8 @@
                               {% endif %}
                             {% endfor %}
                           </div>
+
+                          {% comment %} frames layer {% endcomment %}
                           <div class="frames-layer">
                             {% if selected_frame != 'None' %}
                               {% for frame in frames %}
@@ -32,8 +42,11 @@
                             {% endif %}
                           </div>
                     </div>
+
+                    {% comment %} decription column {% endcomment %}
                     <div class="col-12 col-md-6">
                         <div class="p-4">
+                            {% comment %} edit rock link for superusers {% endcomment %}
                             <h1 class="mb-4">{{rock.name}} {% if rock.is_owned == False %}{% if user.is_authenticated and user.is_superuser %}<span class="small text-muted"><a href="{% url 'rock_edit' rock.id %}">[edit rock]</a></span>{% endif %}{% endif %}</h1>
                             <p><strong>Material:</strong> {{rock.material}}</p>
                             <p><strong>Texture:</strong> {{rock.texture}}</p>
@@ -51,12 +64,16 @@
                     <p class="p-4">
                         {{rock.description}}
                     </p>
+                    
+                    {% comment %} show user notes if there are any {% endcomment %}
                     {% if rock.user_notes %}
                         <p class="mx-4 mb-2"><strong>{{rock.owner}}'s notes about {{rock.name}}:</strong></p>
                         <p class="mx-4 mb-4 pb-3">"{{rock.user_notes}}"</p>
                     {% endif %}
                 </div>
             </div>
+
+            {% comment %} show adoption options if the rock is available for adoption {% endcomment %}
             {% if rock.is_owned == False %}
                 <div class="mt-5 text-center">
                     <p><strong>{{rock.name}} is available for adoption!</strong></p>

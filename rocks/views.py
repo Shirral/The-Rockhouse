@@ -7,27 +7,30 @@ from customisation.models import Accessories
 
 
 def adoptions(request):
+    '''
+    View for the available adoptions page (homepage)
+    '''
 
     rocks = Rock.objects.filter(is_owned=False)
-    accessories = Accessories.objects.filter(type="accessory")
-    frames = Accessories.objects.filter(type="frame")
 
     context = {
         'active_page': 'adoptions',
         'rocks': rocks,
-        'accessories': accessories,
-        'frames': frames
     }
 
     return render(request, 'rocks/index.html', context)
 
 
 def rockprofile(request, rock_id):
+    '''
+    View for the rock profile page
+    '''
 
     rock = get_object_or_404(Rock, pk=rock_id)
     accessories = Accessories.objects.filter(type="accessory")
     frames = Accessories.objects.filter(type="frame")
 
+    # retrieve currently selected accessories saved in the rock object
     if rock.accessories and rock.accessories != "None":
         selected_accessories = rock.accessories['accessories']
         if rock.accessories['frame']:
@@ -50,6 +53,9 @@ def rockprofile(request, rock_id):
 
 
 def rock_edit(request, rock_id):
+    '''
+    A view for the rock edit admin-only page
+    '''
 
     rock = get_object_or_404(Rock, pk=rock_id)
     users = User.objects.all()
@@ -58,6 +64,7 @@ def rock_edit(request, rock_id):
 
     form = RockEditForm(instance=rock)
 
+    # only allow superusers to access the page
     if not request.user.is_superuser:
         messages.info(
             request,
@@ -66,6 +73,7 @@ def rock_edit(request, rock_id):
         )
         return redirect(reverse('rockprofile', kwargs={'rock_id': rock_id}))
 
+    # retrieve currently selected accessories saved in the rock object
     if rock.accessories and rock.accessories != "None":
         selected_accessories = rock.accessories['accessories']
         if rock.accessories['frame']:
@@ -78,8 +86,9 @@ def rock_edit(request, rock_id):
 
     if request.method == "POST":
 
+        # validate the frontend form using the backend
+        # form & model and save the information
         form = RockEditForm(request.POST, instance=rock)
-
         if form.is_valid():
             form.save()
             messages.success(request, "Rock details updated!")
@@ -104,6 +113,9 @@ def rock_edit(request, rock_id):
 
 
 def rock_delete(request, rock_id):
+    '''
+    Admin-only view for deleting the rocks
+    '''
 
     if not request.user.is_superuser:
         messages.info(

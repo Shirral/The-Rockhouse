@@ -2,19 +2,25 @@
 {% load static %}
 
 {% block extra_css %}
+    {% comment %} custom stylesheets for the rocks app, adoptions app {% endcomment %}
     <link rel="stylesheet" href="{% static 'rocks/css/rocks.css' %}">
     <link rel="stylesheet" href="{% static 'adoptions/css/adoptions.css' %}">
 {% endblock %}
 
 {% block header %}
+    {% comment %} secondary navigation bar {% endcomment %}
     {% include 'includes/nav-secondary.html' %}
 {% endblock %}
 
 {% block content %}
         <div class="container">
                 <div class="rock-preview-info mt-5">
+
+                    {% comment %} form to edit rock information {% endcomment %}
                     <form action="" method="POST" class="allauth">
                         {% csrf_token %}
+
+                        {% comment %} diplay errors {% endcomment %}
                         {% if form.non_field_errors %}
                             <div class="alert alert-danger">
                                 {% for error in form.non_field_errors %}
@@ -24,7 +30,11 @@
                         {% endif %}
                         <div class="row">
                             <div class="col-12 col-md-6 justify-content-center">
+
+                                {% comment %} base image {% endcomment %}
                                 <img src="{{ rock.image.url }}" class="img-fluid custom-rounded p-4" alt="image of {{rock.name}}">
+                                
+                                {% comment %} accessories layer {% endcomment %}
                                 <div class="accessories-layer">
                                     {% for accessory in accessories %}
                                     {% if accessory.id in selected_accessories %}
@@ -32,6 +42,8 @@
                                     {% endif %}
                                     {% endfor %}
                                 </div>
+                                
+                                {% comment %} frames layer {% endcomment %}
                                 <div class="frames-layer">
                                     {% if selected_frame != 'None' %}
                                     {% for frame in frames %}
@@ -45,6 +57,9 @@
                             <div class="col-12 col-md-6">
                                 <div class="p-4">
                                     <h1 class="mb-4">
+                                        
+                                        {% comment %} editable fields {% endcomment %}
+                                        {% comment %} name {% endcomment %}
                                         <input type="text" name="name" id="rock_name" value="{{rock.name}}" placeholder="Name your rock..." required>
                                         {% if form.name.errors %}
                                             <div class="text-danger small">
@@ -54,6 +69,8 @@
                                             </div>
                                         {% endif %}
                                     </h1>
+                                    
+                                    {% comment %} material {% endcomment %}
                                     <fieldset class="mb-3">
                                         <label for="rock_material"><strong>Material:</strong></label>
                                         <input type="text" name="material" id="rock_material" value="{{rock.material}}" placeholder="Material..." required>
@@ -65,6 +82,8 @@
                                             </div>
                                         {% endif %}
                                     </fieldset>
+                                    
+                                    {% comment %} texture {% endcomment %}
                                     <fieldset class="mb-3">
                                         <label for="rock_texture"><strong>Texture:</strong></label>
                                         <input type="text" name="texture" id="rock_texture" value="{{rock.texture}}" placeholder="Texture..." required>
@@ -76,6 +95,8 @@
                                             </div>
                                         {% endif %}
                                     </fieldset>
+                                    
+                                    {% comment %} personality {% endcomment %}
                                     <fieldset class="mb-3">
                                         <label for="rock_texture"><strong>Personality:</strong></label>
                                         <input type="text" name="personality" id="rock_personality" value="{{rock.personality}}" placeholder="Personality..." required>
@@ -87,6 +108,8 @@
                                             </div>
                                         {% endif %}
                                     </fieldset>
+                                    
+                                    {% comment %} adoption cost {% endcomment %}
                                     <fieldset class="mb-3">
                                         <label for="rock_price"><strong>Adoption cost in £:</strong></label>
                                         <input type="number" name="price" id="rock_price" value="{{ rock.price }}" step="0.01" min="0" required>
@@ -101,6 +124,8 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        {% comment %} description {% endcomment %}
                         <div class="mx-4 mb-5">
                             <textarea maxlength="800" class="p-4" name="description" id="rock_description" rows="6" placeholder="Describe your rock...">{{rock.description}}</textarea>
                             {% if form.description.errors %}
@@ -115,10 +140,13 @@
                             <input type="submit" class="btn btn-dark mb-5" value="SAVE CHANGES">
                         </div>
                     </form>
+
+                    {% comment %} delete rock link {% endcomment %}
                     <div class="mb-5 text-center">
                         <a class="text-danger small" href="#" data-toggle="modal" data-target="#deleteRockModal">Delete rock</a>
                     </div>
 
+                    {% comment %} confirm rock deletion modal - appears on clicking the link above {% endcomment %}
                     <div class="modal fade" id="deleteRockModal" tabindex="-1" aria-labelledby="deleteRockModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -143,6 +171,7 @@
                         </div>
                     </div>
                 </div>
+            {% comment %} back to rock's page {% endcomment %}
             <div class="mt-5 text-center">
                 <a class="text-muted small" href="{% url 'rockprofile' rock.id %}">< Back to {{rock.name}}'s page</a>
             </div>

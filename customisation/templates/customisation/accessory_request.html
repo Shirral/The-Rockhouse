@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block header %}
+    {% comment %} secondary navigation bar {% endcomment %}
     {% include 'includes/nav-secondary.html' %}
 {% endblock %}
 
@@ -14,8 +15,12 @@
             <h1 class="my-5">Request an accessory</h1>
             <p>We are always working on bringing new fun accessories for you to play with. Have a cool idea? Fill in the form below and we'll see what we can do!</p>
                 <div class="mb-5">
+
+                    {% comment %} accessory request form {% endcomment %}
                     <form action="{% url 'accessory_request' %}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
+                        
+                        {% comment %} accessory name {% endcomment %}
                         <div class="form-group w-75 mx-auto text-left mt-5">
                             <label for="accessory_name"><strong>Accessory name:</strong></label><br>
                             <input type="text" class=" w-100" name="name" id="accessory_name">
@@ -23,6 +28,8 @@
                             <p class="error">{{ form.errors.name.0 }}</p>
                             {% endif %}
                         </div>
+
+                        {% comment %} accessory colour {% endcomment %}
                         <div class="form-group w-75 mx-auto text-left mt-3">
                             <label for="accessory_colour"><strong>Accessory colour:</strong></label><br>
                             <input type="text" class="w-100" id="accessory_colour" name="colour">
@@ -30,6 +37,8 @@
                                 <p class="error">{{ form.errors.colour.0 }}</p>
                             {% endif %}
                         </div>
+                        
+                        {% comment %} accessory type {% endcomment %}
                         <div class="form-group w-75 mx-auto text-left mt-3">
                             <label for="accessory_type"><strong>Accessory type:</strong></label><br>
                             <select class="w-100" id="accessory_type" name="type">
@@ -40,6 +49,8 @@
                                 <p class="error">{{ form.errors.type.0 }}</p>
                             {% endif %}
                         </div>
+                        
+                        {% comment %} accessory description {% endcomment %}
                         <div class="form-group w-75 mx-auto text-left mt-3">
                             <label for="accessory_description"><strong>Accessory description:</strong></label><br>
                             <textarea rows="8" maxlength="600" name="description" id="accessory_description" class="w-100 request-form-textarea" placeholder="Describe the accessory you want to see in the Rockhouse..."></textarea><br>
@@ -47,6 +58,8 @@
                                 <p class="error">{{ form.errors.description.0 }}</p>
                             {% endif %}
                         </div>
+                        
+                        {% comment %} example image upload field {% endcomment %}
                         <div class="w-75 mx-auto text-left mt-3">
                             <label for="accessory_example"><strong>
                                 If you can provide a picture of an example of what you have in mind, please upload it below:

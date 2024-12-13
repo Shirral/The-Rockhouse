@@ -2,6 +2,8 @@ from django import forms
 from .models import RockAdoption
 
 
+# Form created in the backend on the basis of the RockAdoption model,
+# displayed on the adoption-form template
 class AdoptionForm(forms.ModelForm):
     class Meta:
         model = RockAdoption

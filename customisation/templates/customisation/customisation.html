@@ -2,10 +2,12 @@
 {% load static %}
 
 {% block extra_css %}
+    {% comment %} custom stylesheet for the customisation app {% endcomment %}
     <link rel="stylesheet" href="{% static 'customisation/css/customisation.css' %}">
 {% endblock %}
 
 {% block header %}
+    {% comment %} secondary navigation bar {% endcomment %}
     {% include 'includes/nav-secondary.html' %}
 {% endblock %}
 
@@ -14,14 +16,20 @@
             <h1 class="my-5">Customise {{rock.name}}</h1>
             <div class="row" id="customisation-image">
                 <div class="col-10 offset-1 col-md-6 offset-md-3 mb-5 rock-preview-info" class="customisation-image-inner-div">
-                    <img src="{{ rock.image.url }}" class="rock-img img-fluid custom-rounded p-4"  alt="image of {{rock.name}}">
-                    <div id="accessories-layer">
+                  
+                  {% comment %} base image   {% endcomment %}
+                  <img src="{{ rock.image.url }}" class="rock-img img-fluid custom-rounded p-4"  alt="image of {{rock.name}}">
+                  
+                  {% comment %} accessories layer {% endcomment %}
+                  <div id="accessories-layer">
                       {% for accessory in accessories %}
                         {% if accessory.id in selected_accessories %}
                               <img src="{{ accessory.image.url }}" class="img-fluid"  alt="image of {{accessory.name}}" data-accessory-id="{{accessory.id}}">
                         {% endif %}
                       {% endfor %}
                     </div>
+                    
+                    {% comment %} frames layer {% endcomment %}
                     <div id="frames-layer">
                       {% if selected_frame != 'None' %}
                         {% for frame in frames %}
@@ -33,11 +41,15 @@
                     </div>
                 </div>
             </div>
+
+            {% comment %} customisation options {% endcomment %}
             <form action="{% url 'customisation' rock.id %}" method="POST">
               {% csrf_token %}
               <div class="rock-grid row">
+                {% comment %} Bootstrap accordion {% endcomment %}
                   <div class="accordion w-100" id="accordionExample">
-                      <div class="card">
+                    {% comment %} accessories   {% endcomment %}
+                    <div class="card">
                         <div class="card-header" id="headingOne">
                           <h2 class="mb-0">
                             <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -47,7 +59,9 @@
                         </div>
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                           <div class="card-body d-flex row" id="accessory-options">
-                              {% for accessory in accessories %}
+                              
+                            {% comment %} loop through accessories to display them with checkboxes to select {% endcomment %}
+                            {% for accessory in accessories %}
                               <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
                                   <div style="width: 10rem;">
                                       <input type="checkbox" name="accessory" id="accessory_{{accessory.id}}" value="{{accessory.id}}" class="accessory-option" {% if accessory.id in selected_accessories %}checked{% else %}false{% endif %}>
@@ -59,6 +73,7 @@
                         </div>
                       </div>
                       
+                      {% comment %} frames {% endcomment %}
                         <div class="card">
                           <div class="card-header" id="headingTwo">
                             <h2 class="mb-0">
@@ -69,7 +84,8 @@
                           </div>
                           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                             <div class="card-body d-flex row" id="frame-options">
-                                {% for frame in frames %}
+                            {% comment %} loop through frames to display them with radio buttons to select {% endcomment %}
+                            {% for frame in frames %}
                                 <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
                                     <div style="width: 10rem;">
                                         <input type="radio" name="frame" id="frame_{{frame.id}}" value="{{frame.id}}" class="frame-option" {% if frame.id == selected_frame %}checked{% endif %}>
@@ -80,6 +96,7 @@
                                 <div class="col-4 col-md-3 col-lg-2 d-flex justify-content-center my-3">
                                     <div style="width: 10rem;">
                                         <input type="radio" name="frame" id="frame_none" value="frame_none" class="frame-option">
+                                        {% comment %} pick -no frame- option {% endcomment %}
                                         <img src="{{ MEDIA_URL }}no_image.png" class="img-fluid"  alt="remove frame">
                                     </div>
                                 </div>
@@ -88,8 +105,12 @@
                         </div>
                   </div>
               </div>
+
+              {% comment %} request an accessory link {% endcomment %}
               <p class="text-muted small mt-5">Can't find what you're looking for?<br>
               <strong><a href="{% url 'accessory_request' %}">Request a custom accessory!</a></strong></p>
+              
+              {% comment %} user notes {% endcomment %}
               <textarea rows="8" maxlength="800" name="usernotes" class="mt-5 w-75" placeholder="Tell us something about {{rock.name}}...">{{user_notes}}</textarea><br>
               <button class="mt-5 btn btn-dark">CANCEL</button>
               <input class="mt-5 btn btn-dark" type="submit" value="SAVE CHANGES">
@@ -98,5 +119,6 @@
 {% endblock %}
 
 {% block postloadjs %}
-    <script src="{% static 'customisation/js/customisation.js' %}"></script>
+  {% comment %} customisation app script {% endcomment %}
+  <script src="{% static 'customisation/js/customisation.js' %}"></script>
 {% endblock %}

@@ -4,6 +4,9 @@ from customisation.models import Accessories
 
 
 def gallery(request):
+    """
+    View for the gallery page
+    """
 
     rocks = Rock.objects.filter(is_owned=True)
     accessories = Accessories.objects.filter(type="accessory")

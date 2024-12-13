@@ -3,10 +3,12 @@
 {% load static %}
 
 {% block extra_css %}
+    {% comment %} custom stylesheet for the rocks/galery app {% endcomment %}
     <link rel="stylesheet" href="{% static 'rocks/css/rocks.css' %}">
 {% endblock %}
 
 {% block header %}
+    {% comment %} primary navigation bar {% endcomment %}
     {% include 'includes/nav-primary.html' %}
 {% endblock %}
 
@@ -15,12 +17,17 @@
         <hr>
         <p class="my-5 text-center">The rocks below have already found their owners. Behold their little happy stone faces!</p>
         <div class="rock-grid row">
+            {% comment %} same grid and card display system as on the homepage {% endcomment %}
             {% for rock in rocks %}
                     <div class="col-12 col-md-6 d-flex justify-content-center my-3">
                         <div class="card" style="width: 30rem;">
                             <a href="{% url 'rockprofile' rock.id %}">
                                 <div class="customisation-image-inner-div">
+                                    
+                                    {% comment %} base image {% endcomment %}
                                     <img src="{{ rock.image.url }}" class="card-img-top" alt="image of {{rock.name}}">
+                                    
+                                    {% comment %} accessories layer {% endcomment %}
                                     <div class="accessories-layer">
                                         {% for accessory in accessories %}
                                             {% if accessory.id in rock.accessories.accessories %}
@@ -28,6 +35,8 @@
                                             {% endif %}
                                         {% endfor %}
                                     </div>
+                                    
+                                    {% comment %} frames layer {% endcomment %}
                                     <div class="frames-layer">
                                         {% if rock.accessories.frame != 'None' %}
                                             {% for frame in frames %}
@@ -39,6 +48,8 @@
                                     </div>
                                 </div>
                             </a>
+
+                            {% comment %} rock information - name and owner {% endcomment %}
                             <div class="card-body">
                             <h5 class="card-title">{{rock.name}}</h5>
                             <p class="card-text"><strong>Owned by: </strong><a href="{% url 'profile' rock.owner %}">{{rock.owner}}</a></p>

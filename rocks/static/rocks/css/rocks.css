@@ -1,3 +1,5 @@
+/* ----- for the correct display of accessories ----- */
+
 .customisation-image-inner-div {
     position: relative;
     width: auto;
@@ -52,6 +54,10 @@
     padding-top: 0.2em;
     padding-bottom: 0.2em;
 }
+
+
+
+/* ----- rock edit form ----- */
 
 input[type='text'],
 input[type="number"],

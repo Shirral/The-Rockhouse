@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 
 
 def profile(request, username):
+    '''
+    View for the user profile page
+    '''
 
     user = get_object_or_404(User, username__iexact=username)
     user_id = user.id
@@ -19,14 +22,15 @@ def profile(request, username):
         'rock_adoption': rock_adoption,
         'accessories': accessories,
         'frames': frames,
-        # 'selected_frame': selected_frame,
-        # 'selected_accessories': selected_accessories
     }
 
     return render(request, 'userprofile/profile.html', context)
 
 
 def myprofile(request):
+    '''
+    View directing users to their own profile page
+    '''
 
     username = request.user.username
 

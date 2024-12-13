@@ -3,27 +3,36 @@
 {% load static %}
 
 {% block extra_css %}
+    {% comment %} custom stylesheet for user profiles {% endcomment %}
     <link rel="stylesheet" href="{% static 'userprofile/css/userprofile.css' %}">
 {% endblock %}
 
 {% block header %}
+    {% comment %} secondary navigation bar {% endcomment %}
     {% include 'includes/nav-secondary.html' %}
 {% endblock %}
 
 {% block content %}
 <div class="container">
+    {% comment %} username and profile info {% endcomment %}
     <h1 class="mt-5">{{user.username}}</h1>
     <p class="text-muted">Joined on {{user.date_joined}}</p>
     <p>Adopted rocks: {{rock_number}}</p>
     <hr>
+
+    {% comment %} section for displaying the user's adopted rocks {% endcomment %}
     <h5 class="mt-5 mb-4 pb-2 text-center">{{user.username}}'s rocks</h5>
     <div class="rock-grid row">
         {% for rock in rock_adoption %}
             <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center my-3">
+                
+                {% comment %} display rocks in cards {% endcomment %}
                 <div class="card" style="width: 18rem;">
                     <a href="{% url 'rockprofile' rock.rock.id %}">
                         <div class="customisation-image-inner-div">
                             <img src="{{ rock.rock.image.url }}" class="card-img-top" alt="image of {{rock.rock.name}}">
+                            
+                            {% comment %} overlay layer for accessories {% endcomment %}
                             <div class="accessories-layer">
                                 {% for accessory in accessories %}
                                     {% if accessory.id in rock.rock.accessories.accessories %}
@@ -31,6 +40,8 @@
                                     {% endif %}
                                 {% endfor %}
                             </div>
+
+                            {% comment %} overlay layer for frames {% endcomment %}
                             <div class="frames-layer">
                                 {% if rock.rock.accessories.frame != 'None' %}
                                     {% for frame in frames %}
@@ -42,7 +53,10 @@
                             </div>
                         </div>
                     </a>
+
+                    {% comment %} card body with rock details {% endcomment %}
                     <div class="card-body">
+                        {% comment %} customisation link for the rock owner {% endcomment %}
                         <h5 class="card-title">{{rock.rock.name}} {% if user.username == request.user.username %}<span class="small text-muted float-right"><a href="{% url 'customisation' rock.rock.id %}">[customise]</a></span>{% endif %}</h5>
                         <p class="card-text text-muted small">Adopted on {{rock.date}}</p>
                         <p class="card-text">{{rock.rock.short_description}}</p>

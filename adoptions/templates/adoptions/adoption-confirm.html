@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block header %}
+    {% comment %} secondary navigation bar {% endcomment %}
     {% include 'includes/nav-secondary.html' %}
 {% endblock %}
 
@@ -8,9 +9,13 @@
         <div class="container">
             <div class="mt-5">
                 <div class="row">
+
+                    {% comment %} rock image {% endcomment %}
                     <div class="col-12 col-md-5 justify-content-center">
                         <img src="{{ rock.image.url }}" class="img-fluid custom-rounded p-4" alt="placeholder image">
                     </div>
+
+                    {% comment %} adoption information {% endcomment %}
                     <div class="col-12 col-md-7">
                         <div class="p-4">
                             <h1 class="mb-4">{{rock.name}}</h1>
@@ -29,6 +34,8 @@
                 </div>
                 <hr>
             </div>
+
+            {% comment %} links to proceed / go back {% endcomment %}
             <div class="mt-5 text-right d-none d-md-block">
                 <p><strong>{{rock.name}}'s adoption cost: £{{rock.price}}</strong></p>
                 <a class="btn btn-dark mb-5" href="{% url 'adoption_form' rock.id %}">PROCEED</a><br>

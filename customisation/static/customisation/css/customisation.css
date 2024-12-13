@@ -1,4 +1,4 @@
-/* Rock customisation tool */
+/* ----- Rock customisation tool ----- */
 
 #customisation-image .col-md-6,
 #customisation-image .col-10 {
@@ -56,7 +56,9 @@
     border-radius: 20px;
 }
 
-/* Text input styles - copied from adoptions.css and edited */
+
+
+/* ----- Text input styles - copied from adoptions.css and edited ----- */
 
 textarea,
 .form-group input,

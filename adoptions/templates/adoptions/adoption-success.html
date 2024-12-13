@@ -2,10 +2,12 @@
 {% load static %}
 
 {% block header %}
+    {% comment %} secondary navigation bar {% endcomment %}
     {% include 'includes/nav-secondary.html' %}
 {% endblock %}
 
 {% block extra_css %}
+    {% comment %} custom stylesheet for adoptions app {% endcomment %}
     <link rel="stylesheet" href="{% static 'adoptions/css/adoptions.css' %}">
 {% endblock %}
 
@@ -13,9 +15,13 @@
         <div class="container">
             <div class="mt-5">
                 <div class="row">
+
+                    {% comment %} rock image {% endcomment %}
                     <div class="col-12 col-md-3 justify-content-center">
                         <img src="{{ adoption.rock.image.url }}" class="img-fluid custom-rounded p-4" alt="placeholder image">
                     </div>
+
+                    {% comment %} thank you note + links to profile and customisation app {% endcomment %}
                     <div class="col-12 col-md-9">
                         <div class="p-4">
                             <h1 class="mb-4">Thank you!</h1>
@@ -26,6 +32,8 @@
                     </div>
                 </div>
                 <hr>
+
+                {% comment %} back to rock's profile {% endcomment %}
                 <div class="mt-5 text-right d-none d-md-block">
                     <a class="text-muted small" href="{% url 'rockprofile' adoption.rock.id %}">< Back to {{adoption.rock.name}}'s page</a>
                 </div>
