@@ -4,6 +4,12 @@
 
 ["The Rockhouse"](https://github.com/Shirral/The-Rockhouse) is a fictional virtual pet rock adoption centre. The idea is simple: adopt a rock of your choice - they all have their unique qualities: material, texture, even personality - and enjoy the status of a proud rock owner, all without the hassle of shipping and having to have physical space for your new pet rock, while supporting a group of rock enthusiasts who care for it at their facility in your name! It's just like adopting an animal at the zoo. Except it's about rocks. And while you won't have your rock with you in person, it will sit proudly in your online profile for all to see. There, you can use the customisation tool to dress it up with silly accessories, add a frame, and show it off to the world!
 
+## Database structure
+
+The models have been planned out before the project work started. Dstabase schema:
+
+![schema](media/readme/schema.jpg "Database schema.")
+
 ## User Experience & User Interface (UX/UI)
 
 ### Site goals
@@ -235,3 +241,157 @@ Some of the initially planned features did not get implemented due to the lack o
 * **Allowing non-logged-in users to log in through a modal, without leaving the adoption form page, when they're there.**
 * **Accessories shop.** It would be great to have free accessories available to all users and paid ones, only assigned to a user's account once they buy it - or obtain it in a different way, eg. through engagement on The Rockhouse's social media, through an event, competition, etc.
 * **Accessory request form as a way of ordering custom accessories.** These would only be available to the user who ordered these and paid for them; it would be more engaging for the user and it would be an additional income stream for The Rockhouse.
+* **Compressing images and saving them all in space-saving formats.** That would improve the performance of the website, speed-wise.
+* **Resize the images in this readme file and put the images of the wireframes together.** That would improve the readability of this readme file and make it look so much better. Alas, the time is not my friend.
+
+## Testing
+
+For information about testing, please refer to **[TESTING.md](TESTING.md)**.
+
+## Technologies and Resources used
+
+### Programming languages used:
+
+* **HTML5**
+* **CSS3**
+* **JavaScript**
+* **Python**
+
+### Data management systems used:
+
+* **[PostgreSQL](https://www.postgresql.org/)**
+* **[Amazon S3 & AWS](https://us-east-1.console.aws.amazon.com/s3/)**
+
+### Frameworks & Libraries Used:
+
+* **[Django](https://www.djangoproject.com/)**
+* **[jQuery](https://jquery.com/)**
+* **[Bootstrap](https://getbootstrap.com/docs/4.6/getting-started/introduction/)**
+* **[Font Awesome](https://fontawesome.com/)**
+* **[Stripe](https://stripe.com/gb)**
+
+### Software & other technologies and resources used:
+
+* **[Visual Studio Code](https://code.visualstudio.com/)** - IDE the project was written in.
+* **[GitHub Desktop](https://github.com/apps/desktop)** - used for version control and pushing commits to GitHub.
+* **[Canva](https://www.canva.com/)** - used to create the mockup.
+* **[Photopea](https://www.photopea.com/)** - used to prepare the images for the readme file and for editing the logo and the accessory images.
+* **[Wireframe.cc](https://wireframe.cc/)** - used to create the wireframes.
+* **[draw.io](https://app.diagrams.net/)** - used to create the database schema.
+* **[Snipping Tool](https://apps.microsoft.com/detail/9mz95kl8mr0l?hl=en-US&gl=US)** - used to take screenshots.
+* **[ChatGPT + Dall-E](https://chatgpt.com/)** - used to generate the rock descriptions and some of the rock images, and for troubleshooting.
+* **[Gemini](https://gemini.google.com/)** - used to create the description of The Rockhouse and its history for the About page.
+* **[Copilot](https://copilot.microsoft.com/onboarding)** - used to create some of the rocks images, the images for the About page, and the descriptions of the team members of The Rockhouse for the About page.
+* **[Pixabay](https://pixabay.com/)** - used to find the accessory images.
+* **[Logo.com](https://logo.com/dashboard)** - used to make the logo for The Rockhouse.
+
+
+### How-to references used:
+
+* [creating fixtures](https://docs.djangoproject.com/en/5.1/topics/db/fixtures/)
+* [W3 - countless references and how-tos on little things](https://www.w3schools.com/)
+* [Bootstrap documentation - countless references and how-tos on little things](https://getbootstrap.com/docs/4.6/)
+* [allauth views information](https://docs.allauth.org/en/dev/account/views.html)
+* [displaying error messages on failed login attempts](https://stackoverflow.com/questions/52486424/show-error-message-if-password-and-username-incorrect-in-django-form-template)
+* [case-insensitive username matching](https://stackoverflow.com/questions/13190758/django-case-insensitive-matching-of-username-from-auth-user)
+* [Bootstrap accordion](https://getbootstrap.com/docs/4.6/components/collapse/)
+* [jQuery clone() method](https://www.w3schools.com/jquery/html_clone.asp)
+* [styling file upload input elements](https://developer.mozilla.org/en-US/docs/Web/CSS/::file-selector-button)
+* [using ** to unpack a dictionary in a function call](https://shecancode.io/unpacking-function-arguments-in-python/#:~:text=Unpacking%20keyword%20arguments,-When%20the%20arguments&text=A%20double%20asterisk%20**%20is%20used,arguments%20during%20the%20function%20call.&text=Example%201%3A%20Unpacking%20dictionary%20during,arguments%20during%20the%20function%20call)
+* [using upload_to](https://docs.djangoproject.com/en/5.1/ref/models/fields/#django.db.models.FileField.upload_to)
+* [uploading files in Django](https://docs.djangoproject.com/en/5.1/topics/http/file-uploads/)
+* [showing images in Django admin](https://stackoverflow.com/questions/16307307/django-admin-show-image-from-imagefield)
+* [error messages displaying without styling](https://stackoverflow.com/questions/52565366/messages-error-not-formatting-correctly-but-success-does)
+* [only one word showing up in input fields if value is pulled from the object property](https://stackoverflow.com/questions/46525406/django-saving-a-form-strips-values-so-only-the-first-word-is-saved)
+* [unnecessary whitespace in textarea](https://stackoverflow.com/questions/24367927/how-to-remove-extra-space-inside-textarea)
+
+### Project guidance & assistance:
+
+* **My Mentor, Mitko Bachvarov** - thank you for your feedback and guidance!
+* **The loveliest Azul** - thank you for all of the troubleshooting help, for the patience, encouragement, and support!
+
+## Deployment - Heroku
+
+The instructions and images where copied from another project of mine, [Roll4](https://github.com/Shirral/Roll4), where applicable, because the steps are exactly the same.
+
+The project was deployed to Heroku as follows:
+
+1. I opened my Heroku dashboard and clicked on `New` > `Create new app`.
+
+  ![creating new app](media/readme/heroku1.jpg "Creating a new app on Heroku.")
+
+2. I named the project and picked the correct server for the deployment.
+
+  ![naming the project, server choice](media/readme/heroku2.jpg "Naming the project and choosing the server.")
+
+3. I picked `connect to GitHub`, searched for my project's repository and connected to it.
+
+  ![connecting to GitHub](media/readme/heroku3.jpg "Connecting to GitHub.")
+
+4. I enabled automatic deploys and clicked on `deploy branch`.
+
+  ![deploying the branch](media/readme/heroku4.jpg "Deploying the branch.")
+
+5. As the application was building, I went to the `settings` tab, scrolled down to `Reveal Config Vars`, revealed them, and pasted in my environmental variables: DATABASE_URL (for the Code Institute provided PostgreSQL database), USE_AWS and AWS's AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY, Stripe's STRIPE_PUBLIC_KEY and STRIPE_SECRET_KEY, as well as EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, and SECRET_KEY. I also used DISABLE_COLLECTSTATIC = 1 for the first deployment.
+
+  ![config vars](media/readme/heroku5.jpg "Filling in the config variables.")
+
+6. I temporarily connected my project to the Postgres database by adding the DATABASE_URL variable to my .env file and making sure I had the following bit of code in the settings:
+
+```
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+```
+
+then migrated my migrations with `python manage.py migrate.`
+
+7. I added my media files to my AWS S3 bucket. The bucket was set up following this procedure: [link](https://codeinstitute.s3.amazonaws.com/fullstack/AWS%20changes%20sheet.pdf)
+
+8. Live website: [link](https://the-rockhouse-781674c0484c.herokuapp.com/)
+
+### Forking the project on GitHub
+
+If, for whatever reason, anyone would like to get themselves a copy of this project to tinker with on their own - feel free to do so! Here is how to do it so you can have your own copy of the entire repository that you can do whatever you please with, without causing any changes to the original:
+
+1. Open the repository of this project on GitHub. It can be found [here](https://github.com/Shirral/The-Rockhouse).
+
+2. Find the "Fork" button located between the "Watch" and "Star" buttons, near the top of the repository page. Click on it.
+
+3. Done! Go back to your profile - you will find the copy of the project in your repositories.
+
+### Cloning the project on GitHub *(instructions copied from GitHub Docs; images copied from my Roll4 project readme file)*
+
+1. On GitHub.com, navigate to the main page of the repository.
+
+2. Above the list of files, click `Code`.
+
+  ![cloning](media/readme/clone-1.png "Cloning the project.")
+
+3. Copy the URL for the repository.
+
+* To clone the repository using HTTPS, under "HTTPS", click on the 'copy' icon.
+* To clone the repository using an SSH key, including a certificate issued by your organization's SSH certificate authority, click SSH, then click on the 'copy' icon.
+* To clone a repository using GitHub CLI, click GitHub CLI, then click on the 'copy' icon.
+
+  ![cloning](media/readme/clone-2.png "Cloning the project.")
+
+4. Open Git Bash.
+
+5. Change the current working directory to the location where you want the cloned directory.
+
+6. Type `git clone`, and then paste the URL you copied earlier.
+
+7. Press Enter to create your local clone.
+
+## Live website link:
+
+[https://the-rockhouse-781674c0484c.herokuapp.com/](https://the-rockhouse-781674c0484c.herokuapp.com/)
