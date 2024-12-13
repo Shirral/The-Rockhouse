@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Rock
@@ -58,6 +58,14 @@ def rock_edit(request, rock_id):
 
     form = RockEditForm(instance=rock)
 
+    if not request.user.is_superuser:
+        messages.info(
+            request,
+            "The page you are trying to access is only available "
+            "to site administrators. Sorry!"
+        )
+        return redirect(reverse('rockprofile', kwargs={'rock_id': rock_id}))
+
     if rock.accessories and rock.accessories != "None":
         selected_accessories = rock.accessories['accessories']
         if rock.accessories['frame']:
@@ -96,6 +104,15 @@ def rock_edit(request, rock_id):
 
 
 def rock_delete(request, rock_id):
+
+    if not request.user.is_superuser:
+        messages.info(
+            request,
+            "The page you are trying to access is only available "
+            "to site administrators. Sorry!"
+        )
+        return redirect(reverse('rockprofile', kwargs={'rock_id': rock_id}))
+
     if request.method == "POST":
         rock = get_object_or_404(Rock, id=rock_id)
         rock.delete()
