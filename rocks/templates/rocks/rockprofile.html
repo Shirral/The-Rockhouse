@@ -15,14 +15,14 @@
                 <div class="row">
                     <div class="col-12 col-md-6 justify-content-center">
                         <img src="{{ rock.image.url }}" class="img-fluid custom-rounded p-4" alt="image of {{rock.name}}">
-                        <div id="accessories-layer">
+                        <div class="accessories-layer">
                             {% for accessory in accessories %}
                               {% if accessory.id in selected_accessories %}
                                     <img src="{{ accessory.image.url }}" class="img-fluid"  alt="image of {{accessory.name}}">
                               {% endif %}
                             {% endfor %}
                           </div>
-                          <div id="frames-layer">
+                          <div class="frames-layer">
                             {% if selected_frame != 'None' %}
                               {% for frame in frames %}
                                 {% if frame.id == selected_frame %}

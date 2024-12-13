@@ -24,14 +24,14 @@
                     <a href="{% url 'rockprofile' rock.rock.id %}">
                         <div class="customisation-image-inner-div">
                             <img src="{{ rock.rock.image.url }}" class="card-img-top" alt="image of {{rock.rock.name}}">
-                            <div id="accessories-layer">
+                            <div class="accessories-layer">
                                 {% for accessory in accessories %}
                                     {% if accessory.id in rock.rock.accessories.accessories %}
-                                        <img src="{{ accessory.image.url }}" class="img-fluid gallery-display"  alt="image of {{accessory.name}}" data-accessory-id="{{accessory.id}}">
+                                        <img src="{{ accessory.image.url }}" class="img-fluid gallery-display" alt="image of {{accessory.name}}" data-accessory-id="{{accessory.id}}">
                                     {% endif %}
                                 {% endfor %}
                             </div>
-                            <div id="frames-layer">
+                            <div class="frames-layer">
                                 {% if rock.rock.accessories.frame != 'None' %}
                                     {% for frame in frames %}
                                         {% if frame.id == rock.rock.accessories.frame %}

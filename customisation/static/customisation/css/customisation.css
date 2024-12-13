@@ -22,6 +22,8 @@
     left: 0;
 }
 
+.accessories-layer,
+.frames-layer,
 #accessories-layer,
 #frames-layer {
     position: absolute;
@@ -31,14 +33,18 @@
     height: 100%;
 }
 
+.accessories-layer,
 #accessories-layer {
     z-index: 2;
 }
 
+.frames-layer,
 #frames-layer {
     z-index: 3;
 }
 
+.accessories-layer img,
+.frames-layer img,
 #accessories-layer img,
 #frames-layer img {
     width: 93%;

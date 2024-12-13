@@ -1,8 +1,10 @@
-#customisation-image-inner-div {
+.customisation-image-inner-div {
     position: relative;
     width: auto;
 }
 
+.accessories-layer,
+.frames-layer,
 #accessories-layer,
 #frames-layer {
     position: absolute;
@@ -12,16 +14,20 @@
     height: 100%;
 }
 
-#accessories-layer {
+#accessories-layer,
+.accessories-layer {
     z-index: 2;
 }
 
-#frames-layer {
+#frames-layer,
+.frames-layer {
     z-index: 3;
 }
 
 #accessories-layer img,
-#frames-layer img {
+#frames-layer img,
+.accessories-layer img,
+.frames-layer img {
     width: 87%;
     height: auto;
     position: absolute;
@@ -30,8 +36,8 @@
     border-radius: 20px;
 }
 
-#accessories-layer img.gallery-display,
-#frames-layer img.gallery-display {
+.accessories-layer img.gallery-display,
+.frames-layer img.gallery-display {
     width: 100%;
     height: auto;
     position: absolute;
