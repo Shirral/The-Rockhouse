@@ -18,7 +18,7 @@
                 <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center my-3">
                     <div class="card" style="width: 18rem;">
                         <a href="{% url 'rockprofile' rock.id %}">
-                            <div id="customisation-image-inner-div">
+                            <div class="customisation-image-inner-div">
                                 <img src="{{ rock.image.url }}" class="card-img-top" alt="image of {{rock.name}}">
                                 <div id="accessories-layer">
                                     {% for accessory in accessories %}

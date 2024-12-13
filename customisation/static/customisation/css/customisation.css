@@ -10,7 +10,7 @@
     border: 1px solid black;
 }
 
-#customisation-image-inner-div {
+.customisation-image-inner-div {
     position: relative;
     width: auto;
 }

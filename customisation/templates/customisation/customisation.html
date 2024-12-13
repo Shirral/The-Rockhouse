@@ -13,7 +13,7 @@
         <div class="container text-center">
             <h1 class="my-5">Customise {{rock.name}}</h1>
             <div class="row" id="customisation-image">
-                <div class="col-10 offset-1 col-md-6 offset-md-3 mb-5 rock-preview-info" id="customisation-image-inner-div">
+                <div class="col-10 offset-1 col-md-6 offset-md-3 mb-5 rock-preview-info" class="customisation-image-inner-div">
                     <img src="{{ rock.image.url }}" class="rock-img img-fluid custom-rounded p-4"  alt="image of {{rock.name}}">
                     <div id="accessories-layer">
                       {% for accessory in accessories %}
