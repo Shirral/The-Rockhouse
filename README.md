@@ -41,7 +41,7 @@ The goal of the site is to offer the user a unique way of showcasing their passi
 * As the website administrator, I want to make quick changes to rocks available for adoption without having to go to the admin panel.
 * As the website administrator, I want to see the accessory requests from the users.
 * As the website administrator, I want to see the information on the new adoptions. 
-* As the website administrator, I want to change any user's profile information like email or password in case they have lost access to their email and cannot access their account. 
+* As the website administrator, I want to change any user's profile information like email or password in case they have lost access to their email and cannot access their account.
 
 ### Design
 
