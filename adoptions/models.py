@@ -8,12 +8,20 @@ from rocks.models import Rock
 class RockAdoption(models.Model):
 
     # information about the adoption
-    rock = models.ForeignKey(Rock, null=False, blank=False, on_delete=models.PROTECT)
-    user = models.ForeignKey(User, null=False, blank=False, on_delete=models.SET(None))
+    rock = models.ForeignKey(
+        Rock, null=False, blank=False, on_delete=models.PROTECT
+        )
+    user = models.ForeignKey(
+        User, null=False, blank=False, on_delete=models.SET(None)
+        )
     cost = models.DecimalField(max_digits=5, decimal_places=2)
     is_paid = models.BooleanField(default=False)
-    stripe_id = models.CharField(max_length=254, null=False, blank=False, default='')
-    adoption_number = models.CharField(max_length=32, null=False, editable=False)
+    stripe_id = models.CharField(
+        max_length=254, null=False, blank=False, default=''
+        )
+    adoption_number = models.CharField(
+        max_length=32, null=False, editable=False
+        )
     date = models.DateField(auto_now_add=True)
 
     # billing information for Stripe
@@ -33,4 +41,7 @@ class RockAdoption(models.Model):
 
     def __str__(self):
         """Return basic information about the adoption"""
-        return f"{self.user or 'Deleted User'} adopted {self.rock} on {self.date}"
+        return (
+            f"{self.user or 'Deleted User'} adopted "
+            f"{self.rock} on {self.date}"
+        )

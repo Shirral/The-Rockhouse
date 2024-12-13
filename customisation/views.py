@@ -16,7 +16,10 @@ def customisation(request, rock_id):
     user_notes = rock.user_notes
 
     if user != rock.owner:
-        messages.warning(request, "Only the owner of this rock can customise it. If you are the owner of this rock, please log in using the account you used to adopt it!")
+        messages.warning(request,
+                         "Only the owner of this rock can customise it. "
+                         "If you are the owner of this rock, please log "
+                         "in using the account you used to adopt it!")
         return redirect(reverse('account_login'))
 
     if request.method == "POST":
@@ -25,11 +28,17 @@ def customisation(request, rock_id):
         selected_frame = request.POST.get('frame')
         user_notes = request.POST.get('usernotes')
 
-        selected_accessories = [int(x) for x in selected_accessories if x.isdigit()]
+        selected_accessories = [
+            int(x) for x in selected_accessories if x.isdigit()
+        ]
 
         customisation_json = {
             'accessories': selected_accessories,
-            'frame': int(selected_frame) if selected_frame and selected_frame != 'frame_none' else None,
+            'frame': (
+                int(selected_frame)
+                if selected_frame and selected_frame != 'frame_none'
+                else None
+            ),
         }
 
         rock.accessories = customisation_json
@@ -60,13 +69,14 @@ def customisation(request, rock_id):
 
     return render(request, 'customisation/customisation.html', context)
 
+
 @login_required
 def accessory_request(request):
 
     form = AccessoryRequestForm()
 
     if request.method == "POST":
-        # use the data from the existing html form and bind 
+        # use the data from the existing html form and bind
         # them to the form in the backend for validation
         form = AccessoryRequestForm(request.POST, request.FILES)
 
@@ -74,9 +84,16 @@ def accessory_request(request):
             accessory_request = form.save(commit=False)
             accessory_request.user = request.user
             accessory_request.save()
-            messages.success(request, "Accessory request submitted. Thank you!")
+            messages.success(
+                request, "Accessory request submitted. Thank you!"
+                )
             return redirect(reverse('myprofile'))
         else:
-            messages.error(request, "Uh-oh, something's not quite right. Please fix the highlighted fields and try again!")
+            messages.error(
+                request, "Uh-oh, something's not quite right. "
+                "Please fix the highlighted fields and try again!"
+                )
 
-    return render(request, 'customisation/accessory_request.html', {'form': form})
+    return render(
+        request, 'customisation/accessory_request.html', {'form': form}
+        )

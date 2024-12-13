@@ -23,9 +23,15 @@ class Accessories(models.Model):
     def image_tag(self):
         if self.image:
             if 'USE_AWS' in os.environ:
-                return mark_safe('<img src="https://the-rockhouse.s3.amazonaws.com/media/%s" width="150" height="150" />' % (self.image))
+                return mark_safe(
+                    '<img src="https://the-rockhouse.s3.amazonaws.com/media/%s"'
+                    ' width="150" height="150" />' % (self.image)
+                )
             else:
-                return mark_safe('<img src="/media/%s" width="150" height="150" />' % (self.image))
+                return mark_safe(
+                    '<img src="/media/%s" width="150" height="150" '
+                    '/>' % (self.image)
+                )
         return "(No image)"
 
     image_tag.short_description = 'Image'
@@ -37,9 +43,13 @@ class AccessoryRequest(models.Model):
     colour = models.CharField(max_length=50, null=True, blank=True)
     type = models.CharField(max_length=50)
     description = models.TextField(max_length=600)
-    image = models.ImageField(upload_to="accessory_requests/", blank=True, null=True)
+    image = models.ImageField(
+        upload_to="accessory_requests/", blank=True, null=True
+        )
     image_url = models.URLField(max_length=1024, null=True, blank=True)
-    user = models.ForeignKey(User, null=False, blank=False, on_delete=models.SET(None))
+    user = models.ForeignKey(
+        User, null=False, blank=False, on_delete=models.SET(None)
+        )
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):

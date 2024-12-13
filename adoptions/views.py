@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth.models import User
 from rocks.models import Rock
 from .models import RockAdoption
 from .forms import AdoptionForm
@@ -14,7 +13,11 @@ def adoption_confirm(request, rock_id):
     rock = get_object_or_404(Rock, pk=rock_id)
 
     if rock.is_owned is True:
-        messages.info(request, "The rock you are trying to adopt already has an owner. Please choose a different rock!")
+        messages.info(
+            request,
+            "The rock you are trying to adopt already has an owner. "
+            "Please choose a different rock!"
+        )
         return redirect(reverse('adoptions'))
 
     context = {
@@ -32,7 +35,11 @@ def adoption_form(request, rock_id):
     cost = rock.price
 
     if rock.is_owned is True:
-        messages.info(request, "The rock you are trying to adopt already has an owner. Please choose a different rock!")
+        messages.info(
+            request,
+            "The rock you are trying to adopt already has an owner. "
+            "Please choose a different rock!"
+        )
         return redirect(reverse('adoptions'))
 
     if request.method == 'POST':
@@ -52,19 +59,13 @@ def adoption_form(request, rock_id):
             adoption.rock = rock
             adoption.user = request.user
             adoption.cost = cost
-            adoption.is_paid = False  # updated later with webhook?
+            adoption.is_paid = False
             adoption.adoption_number = adoption._generate_adoption_number()
 
-            # get stripe id from the PI - change later to get it from webhook
-            # if time!
             payment_intent_id = request.POST.get('payment_intent_id')
             adoption.stripe_id = payment_intent_id
 
-            # get payment confirmation from the PI - change later to get it
-            # from webhook if time! - from
-            # https://docs.stripe.com/api/payment_intents/retrieve ,
-            # error handling:
-            # https://docs.stripe.com/error-handling?lang=python&locale=en-GB#catch-exceptions
+            # get payment confirmation from the PI
             stripe.api_key = stripe_secret_key
             try:
                 intent = stripe.PaymentIntent.retrieve(payment_intent_id)
@@ -73,7 +74,11 @@ def adoption_form(request, rock_id):
                 else:
                     adoption.is_paid = False
             except stripe.error.StripeError:
-                messages.error(request, "Something went wrong with processing your payment. Please try again!")
+                messages.error(
+                    request,
+                    "Something went wrong with processing your payment. "
+                    "Please try again!"
+                )
 
             adoption.save()
 
@@ -81,7 +86,9 @@ def adoption_form(request, rock_id):
             rock.owner = request.user
             rock.save()
 
-        return redirect(reverse('adoption_success', args=[adoption.adoption_number]))
+        return redirect(
+            reverse('adoption_success', args=[adoption.adoption_number])
+        )
 
     else:
         stripe_cost = round(cost * 100)

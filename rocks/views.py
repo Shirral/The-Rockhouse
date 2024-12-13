@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Rock
@@ -77,21 +77,10 @@ def rock_edit(request, rock_id):
             messages.success(request, "Rock details updated!")
             return redirect("rockprofile", rock_id=rock.id)
         else:
-            messages.error(request, "Uh-oh, something's not quite right. Please fix the highlighted fields and try again!")
-
-        # use current values as fallback values in case
-        # no new value is provided
-        # rock.name = request.POST.get("name", rock.name)
-        # rock.material = request.POST.get("material", rock.material)
-        # rock.texture = request.POST.get("texture", rock.texture)
-        # rock.personality = request.POST.get("personality", rock.personality)
-        # rock.description = request.POST.get("description", rock.description)
-        # rock.price = request.POST.get("price", rock.price)
-
-        # rock.save()
-
-        # messages.success(request, "Rock details updated!")
-        # return redirect("rockprofile", rock_id=rock.id)
+            messages.error(request,
+                           "Uh-oh, something's not quite right. "
+                           "Please fix the highlighted fields and "
+                           "try again!")
 
     context = {
         'rock': rock,

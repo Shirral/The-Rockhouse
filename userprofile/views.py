@@ -13,16 +13,6 @@ def profile(request, username):
     accessories = Accessories.objects.filter(type="accessory")
     frames = Accessories.objects.filter(type="frame")
 
-    # for rock in rock_adoption.rock:
-    #     if rock_adoption.rock.accessories != "":
-    #         selected_accessories = rock_adoption.rock.accessories['accessories']
-    #         if rock_adoption.rock.accessories['frame']:
-    #             selected_frame = int(rock_adoption.rock.accessories['frame'])
-    #         else:
-    #             selected_frame = 'None'
-
-    # did not work, gotta try the templates
-
     context = {
         'user': user,
         'rock_number': rock_number,

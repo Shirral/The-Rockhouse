@@ -9,7 +9,9 @@ class Rock(models.Model):
     short_description = models.TextField()
     user_notes = models.TextField(null=True, blank=True, max_length=800)
     is_owned = models.BooleanField(default=False)
-    owner = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    owner = models.ForeignKey(
+        User, null=True, blank=True, on_delete=models.SET_NULL
+        )
     material = models.CharField(max_length=50)
     texture = models.CharField(max_length=50)
     personality = models.CharField(max_length=50)
